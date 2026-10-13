@@ -13,7 +13,7 @@ These come from the product owner. Don't break them without explicit approval.
 - **No operator branding.** The real railway operator must never be named anywhere: code, UI, data, docs, commit messages. Use generic terms ("le réseau", "l’agence").
 - **Product name:** `L’AIGUILLEUR`, with "AI" in a different color. In HTML: `L’<span>AI</span>GUILLEUR`.
 - **Model:** every LLM request uses `mistral-large-4`, defined once as `MODEL` in `backend/prompts.py`. Never add a fallback model.
-- **Every LLM call goes through a named feature workflow.** The web app must not call the chat API directly. New AI features get a workflow file in `worker/workflows/`, a `Task` value and a name in `worker/models.py`; reuse the shared plugin-call helper in `worker/llm.py`.
+- **Every LLM call goes through a named feature workflow.** The web app must not call the chat API directly. New AI features get a workflow file in `worker/workflows/`, a `Task` value and a name in `worker/workflow_types.py`; reuse the shared plugin-call helper in `worker/model_call.py`.
 - **No fake AI output.** If a model call fails, show the error and keep the user's data. Never substitute canned text. Sample content in the data must stay labeled as sample (`summary_source: "demo"`, `impact.origin: "demo"`, `synthetic: true`).
 - **The incident summary is generated on demand only** (button), never automatically.
 - **No emoji** anywhere.
@@ -35,7 +35,7 @@ Two processes run locally:
 
 ### Layout and modules
 
-The project started from the Mistral Workflows starter template and was reorganized into one folder per part. There is no `src/` folder. `backend` and `worker` are Python packages installed in editable mode (`uv sync`), so imports look like `from backend.prompts import MODEL` or `from worker.models import WORKFLOW_NAMES`.
+The project started from the Mistral Workflows starter template and was reorganized into one folder per part. There is no `src/` folder. `backend` and `worker` are Python packages installed in editable mode (`uv sync`), so imports look like `from backend.prompts import MODEL` or `from worker.workflow_types import WORKFLOW_NAMES`.
 
 | Path | Responsibility |
 |---|---|
@@ -48,13 +48,12 @@ The project started from the Mistral Workflows starter template and was reorgani
 | `backend/ai_requests.py` | `AIService`: starts workflow runs, polls them, validates results (including KPI sources), turns errors into French UI messages. |
 | `backend/background_tasks.py` | `Jobs`: background tasks in the web server: call summary, then KPI update; KPI update after any change. |
 | `worker/workflows/` | One file/class per feature: `incident_summary.py`, `call_summary.py`, `impact_extraction.py`, `incident_assistant.py`, `call_assistant.py`. Each fixes its task; only impact requests JSON. |
-| `worker/models.py` | Pure `Task` and `WORKFLOW_NAMES` mapping; input `LLMRequest{messages}` (no caller task/structured flag), output `LLMResult{task, model, content}`. Safe to import in backend and sandbox. |
-| `worker/llm.py` | Shared deterministic helper calling the Mistral plugin activity with `model=MODEL`, `reasoning_effort="none"` and `MAX_TOKENS_BY_TASK`, then rejecting empty/truncated content and stripping thinking chunks. |
+| `worker/workflow_types.py` | Pure `Task` and `WORKFLOW_NAMES` mapping; input `LLMRequest{messages}` (no caller task/structured flag), output `LLMResult{task, model, content}`. Safe to import in backend and sandbox. |
+| `worker/model_call.py` | Shared deterministic helper calling the Mistral plugin activity with `model=MODEL`, `reasoning_effort="none"` and `MAX_TOKENS_BY_TASK`, then rejecting empty/truncated content and stripping thinking chunks. |
 | `worker/start.py` | Auto-discovers every workflow class in `worker/workflows/` and runs the worker (Docker `CMD`). |
-| `worker/dev.py` | `make start-worker`: runs `worker.start` and restarts it when a `.py` file in `worker/` or `backend/` changes. |
+| `worker/start_with_reload.py` | `make start-worker`: runs `worker.start` and restarts it when a `.py` file in `worker/` or `backend/` changes. |
 | `worker/run_workflow.py` | `make execute`: starts one workflow run from the command line. |
 | `tests/test_incidents.py` | Focused tests. No network, no microphone. |
-| `reference/` | Material from the brief (legacy screenshots, UI sketch). Not used by the code. |
 | `examples/` | Starter-template sample workflows (including `hello.py`), run only by `make start-examples`. Leave them alone unless asked. |
 
 ### Named workflows
@@ -150,7 +149,7 @@ Errors: 404 not found, 409 conflict, 422 invalid input, 503 AI or data problem. 
 
 ```bash
 uv sync                # install
-make start-worker      # worker with auto-reload (worker.dev)
+make start-worker      # worker with auto-reload (worker.start_with_reload)
 make demo              # web server, 127.0.0.1:8000
 make test-demo         # tests
 make check             # ruff + mypy on backend/worker/tests, semgrep on worker/workflows (also run by the Vibe post-turn hook)

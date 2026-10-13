@@ -68,7 +68,7 @@ Browser ──HTTP──> Web server (make demo) ──starts workflow runs─�
 ```
 
 - The **web server** (FastAPI) serves the UI and API, validates requests and saves every change to `incidents.json`. For AI work, it builds the prompt and starts the named workflow for that feature.
-- The **worker** runs the five feature workflows. They share the model-call helper in `worker/llm.py`, which calls `mistral-large-4` through the Mistral plugin, with retries, and returns only the final answer. Each feature has its own named workflow and execution history in AI Studio.
+- The **worker** runs the five feature workflows. They share the model-call helper in `worker/model_call.py`, which calls `mistral-large-4` through the Mistral plugin and returns only the final answer. An empty or truncated answer fails without retry. Each feature has its own named workflow and execution history in AI Studio.
 - The web server checks each run every 0.5 s and saves the result. It gives up after 80 s and cancels the run.
 
 | AI feature | Workflow name | Trigger |
@@ -85,37 +85,37 @@ Workflow inputs contain `messages` only. The selected workflow fixes the task; K
 
 ```text
 demo-aiguilleur/
-├── frontend/                   # What runs in the browser (no build step)
-│   ├── index.html              # Page structure
-│   ├── app.js                  # All UI behavior: list, incident page, calls, microphone, chats
-│   └── styles.css              # Look and colors
-├── backend/                    # The web server (make demo)
-│   ├── server.py               # API routes; also serves the frontend files
-│   ├── storage.py              # Reads and writes incidents.json
-│   ├── ai_requests.py          # Starts workflow runs and validates their results
-│   ├── prompts.py              # Prompt texts and the model name
-│   ├── background_tasks.py     # Background steps: call summary, then KPI update
+├── frontend/                        # What runs in the browser (no build step)
+│   ├── index.html                   # Page structure
+│   ├── app.js                       # All UI behavior: list, incident page, calls, microphone, chats
+│   └── styles.css                   # Look and colors
+├── backend/                         # The web server (make demo)
+│   ├── server.py                    # API routes; also serves the frontend files
+│   ├── storage.py                   # Reads and writes incidents.json
+│   ├── ai_requests.py               # Starts workflow runs and validates their results
+│   ├── prompts.py                   # Prompt texts and the model name
+│   ├── background_tasks.py          # Background steps: call summary, then KPI update
 │   └── data/
-│       ├── incidents.json      # All incident data: the single source of truth
-│       └── schema.py           # Validation of the JSON file
-├── worker/                     # The Mistral Workflows worker (make start-worker)
-│   ├── workflows/
-│   │   ├── incident_summary.py # Header summary
-│   │   ├── call_summary.py     # Finished-call summary
-│   │   ├── impact_extraction.py # Six impact KPIs
-│   │   ├── incident_assistant.py # Incident chat
-│   │   └── call_assistant.py   # Call chat
-│   ├── llm.py                  # Shared Mistral plugin call and response validation
-│   ├── models.py               # Request/result types and workflow-name mapping
-│   ├── start.py                # Finds the workflows and starts the worker
-│   ├── dev.py                  # Same, restarting on code changes
-│   └── run_workflow.py         # Starts one workflow run from the command line (make execute)
-├── tests/test_incidents.py     # Focused tests, no network calls
-├── reference/                  # Legacy tool screenshots and the UI sketch from the brief
-├── examples/                   # Sample workflows from the starter template, unused by the app
-├── Makefile                    # All commands
-├── AGENTS.md                   # Guidance for coding agents
-└── Dockerfile                  # Worker image
+│       ├── incidents.json           # All incident data: the single source of truth
+│       └── schema.py                # Validation of the JSON file
+├── worker/                          # The Mistral Workflows worker (make start-worker)
+│   ├── workflows/                   # One file per AI feature
+│   │   ├── incident_summary.py      # Header summary
+│   │   ├── call_summary.py          # Finished-call summary
+│   │   ├── impact_extraction.py     # Six impact KPIs
+│   │   ├── incident_assistant.py    # Incident chat
+│   │   └── call_assistant.py        # Call chat
+│   ├── model_call.py                # Shared mistral-large-4 call and answer checks
+│   ├── workflow_types.py            # Workflow input/output types and workflow names
+│   ├── start.py                     # Finds the workflows and starts the worker
+│   ├── start_with_reload.py         # Same, restarting on code changes (make start-worker)
+│   └── run_workflow.py              # Starts one workflow run from the command line (make execute)
+├── tests/test_incidents.py          # Focused tests, no network calls
+├── reference/ui_sketch.png          # UI sketch from the brief
+├── examples/                        # Sample workflows from the starter template, unused by the app
+├── Makefile                         # All commands
+├── AGENTS.md                        # Guidance for coding agents
+└── Dockerfile                       # Worker image
 ```
 
 ## Data
@@ -154,7 +154,7 @@ To use a different dataset, copy the file and set `AIGUILLEUR_DATA_FILE=/path/to
 
 ```bash
 make test-demo   # app and workflow tests (no network calls)
-make check       # ruff and mypy on backend, worker and tests; workflow determinism rules
+make check       # ruff on backend, worker and tests; mypy on backend and worker; workflow determinism rules
 ```
 
 The tests cover saving and validation, the message and call flows, protection against outdated KPI results, routing of all five AI requests to their named workflows, worker discovery, JSON output mode, and invalid-response handling.
@@ -169,7 +169,7 @@ uv run python .agents/skills/workflows/scripts/test_workflow.py worker/workflows
 
 ## Deployment
 
-The `Dockerfile` builds **the worker only** (the frontend, tests, examples and reference material are left out): Mistral Cloud runs it and it discovers all five workflows in `worker/workflows/` automatically. The web UI is not containerized; run it with `make demo`.
+The `Dockerfile` builds **the worker only** (the frontend, tests, examples and reference sketch are left out): Mistral Cloud runs it and it discovers all five workflows in `worker/workflows/` automatically. The web UI is not containerized; run it with `make demo`.
 
 ```bash
 make docker-build
@@ -180,7 +180,7 @@ make docker-run   # passes .env values as environment variables
 
 ## AI latency and diagnostics
 
-All five workflows use `reasoning_effort="none"` for these short factual demo tasks. Prompts request concise answers (80 words for incident summaries and chats, 100 for call summaries). Token limits in `worker/llm.py` are 256 for incident summaries/chats, 320 for call summaries, and 512 for KPI JSON. A truncated response is rejected, never silently displayed. Compact JSON removes whitespace, not incident content: transcripts, messages, summaries, KPIs, related and historical context are retained.
+All five workflows use `reasoning_effort="none"` for these short factual demo tasks. Prompts request concise answers (80 words for incident summaries and chats, 100 for call summaries). Token limits in `worker/model_call.py` are 256 for incident summaries/chats, 320 for call summaries, and 512 for KPI JSON. A truncated response is rejected, never silently displayed. Compact JSON removes whitespace, not incident content: transcripts, messages, summaries, KPIs, related and historical context are retained.
 
 A 13-request end-to-end check on 13 October 2026 returned **11 answers below 8 s**, with a **5.98 s median** and no failures. The incident-assistant HTTP route completed in **5.59 s**. Two outliers took 13.32 s (assistant) and 19.36 s (KPIs); traces showed the time was spent in the model, not retries. This is a small measurement sample, not a latency guarantee. No streaming, fake responses or alternate model are used.
 

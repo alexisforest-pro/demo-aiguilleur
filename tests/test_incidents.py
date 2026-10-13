@@ -16,7 +16,7 @@ from backend.data import DEFAULT_DATA_PATH
 from backend.data.schema import KPI_KEYS, DataError, load_document
 from backend.server import create_app
 from backend.storage import Conflict, Store, find_call
-from worker.models import WORKFLOW_NAMES
+from worker.workflow_types import WORKFLOW_NAMES
 
 INCIDENT = "INC-2026-041"
 URL = f"/api/incidents/{INCIDENT}"
@@ -450,9 +450,9 @@ def test_named_workflows_use_the_plugin_and_are_all_discovered(monkeypatch):
     )
     from pydantic import ValidationError
 
-    from worker import llm
-    from worker.models import LLMRequest
+    from worker import model_call
     from worker.start import discover_workflows
+    from worker.workflow_types import LLMRequest
 
     discovered = discover_workflows()
     by_name = {get_workflow_definition(cls).name: cls for cls in discovered}
@@ -479,7 +479,7 @@ def test_named_workflows_use_the_plugin_and_are_all_discovered(monkeypatch):
         return SimpleNamespace(model=params.model, choices=choices)
 
     monkeypatch.setattr(
-        llm.workflows_mistralai, "mistralai_chat_complete", fake_chat_complete
+        model_call.workflows_mistralai, "mistralai_chat_complete", fake_chat_complete
     )
     messages = [
         {"role": "system", "content": "Consignes"},
@@ -502,7 +502,7 @@ def test_named_workflows_use_the_plugin_and_are_all_discovered(monkeypatch):
             completion = seen[-1]
             assert completion.model == MODEL
             assert completion.reasoning_effort == "none"
-            assert completion.max_tokens == llm.MAX_TOKENS_BY_TASK[task]
+            assert completion.max_tokens == model_call.MAX_TOKENS_BY_TASK[task]
             if task == "impact":
                 assert completion.response_format.type == "json_object"
             else:

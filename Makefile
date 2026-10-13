@@ -40,7 +40,7 @@ check: lint typecheck lint-workflows
 
 ## Start the worker: runs worker/workflows/ and restarts on file changes
 start-worker:
-	uv run python -m worker.dev
+	uv run python -m worker.start_with_reload
 
 ## Build the worker image — the same Dockerfile Mistral Cloud builds
 docker-build:

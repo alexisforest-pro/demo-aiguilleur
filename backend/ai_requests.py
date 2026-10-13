@@ -18,7 +18,7 @@ from mistralai.client.errors import MistralError, NoResponseError
 from mistralai.workflows.client import get_mistral_client
 from pydantic import BaseModel, ConfigDict, Field
 
-from worker.models import WORKFLOW_NAMES, Task
+from worker.workflow_types import WORKFLOW_NAMES, Task
 
 from . import prompts
 from .data import DEFAULT_DATA_PATH

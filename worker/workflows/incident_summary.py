@@ -2,8 +2,8 @@
 
 from mistralai import workflows
 
-from worker.llm import complete_llm
-from worker.models import WORKFLOW_NAMES, LLMRequest, LLMResult
+from worker.model_call import complete_llm
+from worker.workflow_types import WORKFLOW_NAMES, LLMRequest, LLMResult
 
 
 @workflows.workflow.define(

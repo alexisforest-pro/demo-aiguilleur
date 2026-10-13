@@ -8,7 +8,7 @@ import mistralai.workflows.plugins.mistralai as workflows_mistralai
 from mistralai import workflows
 
 from backend.prompts import MODEL
-from worker.models import ChatMessage, LLMRequest, LLMResult, Task
+from worker.workflow_types import ChatMessage, LLMRequest, LLMResult, Task
 
 # Short factual answers; impact needs room for all six validated JSON items.
 MAX_TOKENS_BY_TASK: dict[Task, int] = {
