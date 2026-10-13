@@ -1,0 +1,197 @@
+# L’AIGUILLEUR
+
+An AI-assisted railway incident-management demo. It reimagines a legacy incident tool (a list of ongoing incidents, and one page per incident with its chronology of events) and adds AI assistance: summaries, call transcripts, an incident assistant, automatic impact KPIs and similar past incidents.
+
+The UI is in French. All data is synthetic. Every LLM request uses `mistral-large-4` and runs as a [Mistral Workflows](https://docs.mistral.ai/workflows/getting-started/introduction) execution.
+
+> **Demo only.** This is not an operational safety system. KPIs, summaries and historical matches are illustrative, and AI output always needs human validation.
+
+## Quick start
+
+Requirements: Python 3.12+, [uv](https://docs.astral.sh/uv/), a Mistral API key with access to `mistral-large-4`, and Chrome (recommended for speech recognition).
+
+1. Install dependencies:
+
+   ```bash
+   uv sync
+   ```
+
+2. Create `.env` at the project root:
+
+   ```bash
+   MISTRAL_API_KEY=your-key
+   SERVER_URL=https://api.mistral.ai
+   DEPLOYMENT_NAME=your-unique-deployment-name
+   ```
+
+   `DEPLOYMENT_NAME` routes workflow executions to your own worker. Pick a name nobody else uses (for example `<hostname>-demo-aiguilleur`).
+
+3. Start the two processes, each in its own terminal:
+
+   ```bash
+   make start-worker   # terminal 1: runs all five AI workflows
+   make demo           # terminal 2: web UI and API on http://127.0.0.1:8000
+   ```
+
+4. Open http://127.0.0.1:8000.
+
+Without the worker, the app still loads and saves data, but AI actions fail with an error telling you to start it.
+
+## Features
+
+**Incident list.** A compact table with one row per incident: reference, start time (UTC), event and location, sector and line, severity and status, estimated recovery, and communication counts. The overview counters show the total ongoing incidents and the SEV1/SEV2/SEV3 breakdown. SEV1 is highest (strong red), SEV2 is lighter red, and SEV3 is orange. The existing data levels are displayed as G3 → SEV1, G2 → SEV2, G1 → SEV3; the JSON data is unchanged. Click a row to open the incident, or focus its title and press Enter. Search and severity filters are retained; the table scrolls horizontally on small screens.
+
+**Incident page:**
+
+| Block | What it does |
+|---|---|
+| Header | Incident details and an AI summary, regenerated on demand with a button. |
+| Related incidents | Links to other ongoing incidents, chosen from a picker. |
+| Communications | Timeline of messages and calls. Calls have their own color and an *En cours* / *Terminé* status. A finished call shows its summary in the timeline. |
+| Call panel | Opens in the page with three tabs: *Résumé*, *Transcription*, *Chat*. |
+| Assistant | Answers questions using the whole incident: header, communications, call summaries, KPIs, related and past incidents. |
+| Impact | Six KPIs: passengers, trains, estimated delay, cancelled trains, mobilized teams, estimated recovery. Each one cites the message or call it comes from. They update automatically after a new message or a finished call. |
+| History | Similar past incidents with a confidence score. Each opens a preview and a demo archive page. |
+
+**New calls.** Two options:
+
+- **Microphone.** Records your voice and transcribes it live in French using the browser's speech recognition. When you stop, you review and confirm the transcript; the app then writes the summary and updates the KPIs. If speech recognition isn't available, the audio is still recorded and you type the transcript.
+- **Synthetic.** Creates a call with a sample transcript, clearly labeled as such.
+
+## How it works
+
+```text
+Browser ──HTTP──> Web server (make demo) ──starts workflow runs──> Mistral Workflows API
+                        │                                                  │
+                 incidents.json                                            ▼
+                                                     Worker (make start-worker) ──> mistral-large-4
+```
+
+- The **web server** (FastAPI) serves the UI and API, validates requests and saves every change to `incidents.json`. For AI work, it builds the prompt and starts the named workflow for that feature.
+- The **worker** runs the five feature workflows. They share the model-call helper in `worker/llm.py`, which calls `mistral-large-4` through the Mistral plugin, with retries, and returns only the final answer. Each feature has its own named workflow and execution history in AI Studio.
+- The web server checks each run every 0.5 s and saves the result. It gives up after 80 s and cancels the run.
+
+| AI feature | Workflow name | Trigger |
+|---|---|---|
+| Incident summary | `aiguilleur-incident-summary` | Summary button; waits for the result |
+| Call summary | `aiguilleur-call-summary` | Finishing a call; background |
+| Impact KPIs | `aiguilleur-impact-extraction` | New message, finished call summary, link change, retry; background |
+| Incident assistant | `aiguilleur-incident-assistant` | Asking an incident question; waits for the result |
+| Call assistant | `aiguilleur-call-assistant` | Asking a call question; waits for the result |
+
+Workflow inputs contain `messages` only. The selected workflow fixes the task; KPI extraction always requests JSON output. Prompts remain in `backend/prompts.py`. The history block still uses sample matches, not an AI workflow.
+
+### Project layout
+
+```text
+demo-aiguilleur/
+├── frontend/                   # What runs in the browser (no build step)
+│   ├── index.html              # Page structure
+│   ├── app.js                  # All UI behavior: list, incident page, calls, microphone, chats
+│   └── styles.css              # Look and colors
+├── backend/                    # The web server (make demo)
+│   ├── server.py               # API routes; also serves the frontend files
+│   ├── storage.py              # Reads and writes incidents.json
+│   ├── ai_requests.py          # Starts workflow runs and validates their results
+│   ├── prompts.py              # Prompt texts and the model name
+│   ├── background_tasks.py     # Background steps: call summary, then KPI update
+│   └── data/
+│       ├── incidents.json      # All incident data: the single source of truth
+│       └── schema.py           # Validation of the JSON file
+├── worker/                     # The Mistral Workflows worker (make start-worker)
+│   ├── workflows/
+│   │   ├── incident_summary.py # Header summary
+│   │   ├── call_summary.py     # Finished-call summary
+│   │   ├── impact_extraction.py # Six impact KPIs
+│   │   ├── incident_assistant.py # Incident chat
+│   │   └── call_assistant.py   # Call chat
+│   ├── llm.py                  # Shared Mistral plugin call and response validation
+│   ├── models.py               # Request/result types and workflow-name mapping
+│   ├── start.py                # Finds the workflows and starts the worker
+│   ├── dev.py                  # Same, restarting on code changes
+│   └── run_workflow.py         # Starts one workflow run from the command line (make execute)
+├── tests/test_incidents.py     # Focused tests, no network calls
+├── reference/                  # Legacy tool screenshots and the UI sketch from the brief
+├── examples/                   # Sample workflows from the starter template, unused by the app
+├── Makefile                    # All commands
+├── AGENTS.md                   # Guidance for coding agents
+└── Dockerfile                  # Worker image
+```
+
+## Data
+
+All incident data lives in **`backend/data/incidents.json`**. The app reads it on every request and writes every change back to it, so you can edit it by hand.
+
+| Key | Contents |
+|---|---|
+| `incidents` | Headers, messages, calls with transcripts and summaries, KPIs, related links, past incidents |
+| `kpi_definitions` | The six KPI keys and their display labels |
+| `operator` | Name and role used as the author of new messages and calls |
+| `call_defaults` | Default call title and microphone participants |
+| `synthetic_call` | Sample transcript for synthetic calls. Placeholders: `{operator_name}`, `{incident_owner}`, `{estimated_end}` |
+
+**Editing by hand:**
+
+- Keep IDs unique and references valid (related incidents, KPI sources). An invalid file is reported as an error and is never overwritten.
+- When you change an incident's content, increase its `revision` by 1. This makes the UI show that the summary and KPIs are out of date.
+- Manual edits don't trigger AI updates. Use the summary button or the KPI *Recalculer* button afterwards.
+- Stop the web server before large edits.
+
+To use a different dataset, copy the file and set `AIGUILLEUR_DATA_FILE=/path/to/copy.json`.
+
+**Not saved:** recorded audio and chat conversations stay in the browser and disappear when you reload the page. Audio is never uploaded. Confirmed transcripts are saved and sent to Mistral.
+
+## Configuration
+
+| Variable | Used by | Purpose |
+|---|---|---|
+| `MISTRAL_API_KEY` | Web server, worker | API key. Never sent to the browser. |
+| `SERVER_URL` | Web server, worker | Mistral API URL. Default `https://api.mistral.ai`. |
+| `DEPLOYMENT_NAME` | Web server, worker | Routes workflow runs to your worker. Must match on both sides. |
+| `AIGUILLEUR_DATA_FILE` | Web server | Optional path to another data file. |
+
+## Development
+
+```bash
+make test-demo   # app and workflow tests (no network calls)
+make check       # ruff and mypy on backend, worker and tests; workflow determinism rules
+```
+
+The tests cover saving and validation, the message and call flows, protection against outdated KPI results, routing of all five AI requests to their named workflows, worker discovery, JSON output mode, and invalid-response handling.
+
+To try one workflow on its own against the real API:
+
+```bash
+uv run python .agents/skills/workflows/scripts/test_workflow.py worker/workflows/incident_assistant.py \
+  --input '{"messages": [{"role": "user", "content": "Dis bonjour."}]}' \
+  --timeout 60
+```
+
+## Deployment
+
+The `Dockerfile` builds **the worker only** (the frontend, tests, examples and reference material are left out): Mistral Cloud runs it and it discovers all five workflows in `worker/workflows/` automatically. The web UI is not containerized; run it with `make demo`.
+
+```bash
+make docker-build
+make docker-run   # passes .env values as environment variables
+```
+
+`.dockerignore` excludes `.env`, so the API key never ends up in the image.
+
+## AI latency and diagnostics
+
+All five workflows use `reasoning_effort="none"` for these short factual demo tasks. Prompts request concise answers (80 words for incident summaries and chats, 100 for call summaries). Token limits in `worker/llm.py` are 256 for incident summaries/chats, 320 for call summaries, and 512 for KPI JSON. A truncated response is rejected, never silently displayed. Compact JSON removes whitespace, not incident content: transcripts, messages, summaries, KPIs, related and historical context are retained.
+
+A 13-request end-to-end check on 13 October 2026 returned **11 answers below 8 s**, with a **5.98 s median** and no failures. The incident-assistant HTTP route completed in **5.59 s**. Two outliers took 13.32 s (assistant) and 19.36 s (KPIs); traces showed the time was spent in the model, not retries. This is a small measurement sample, not a latency guarantee. No streaming, fake responses or alternate model are used.
+
+The original failed assistant run was picked up immediately; its model request took 84.4 s and the app terminated the workflow after its 80 s wait limit. We kept that safety limit rather than increasing it to hide the delay.
+
+The backend logs the task, execution ID and elapsed seconds at workflow start/completion/timeout; it does not log prompts, answers or API keys. Use the execution ID to inspect the run and model activity in AI Studio. After Python changes, `make start-worker` reloads the worker automatically; restart `make demo` to load new backend prompts and logging.
+
+## Limitations
+
+- **One user, local machine.** The web server listens on `127.0.0.1`. Two processes writing the same JSON file aren't supported.
+- **Only the model calls are durable.** The chain "call summary, then KPI update" runs in the web server. If you restart it mid-chain, the step shows as failed and you retry it from the UI.
+- **Latency.** Most requests in the latest sample finished below 8 s, but model-load outliers still occur. Call summary and KPI extraction are sequential, so their combined time can exceed 8 s. See the measurements above.
+- **Microphone** needs `localhost` or HTTPS. Browser speech recognition may send audio to the browser vendor's service; the UI says so.
+- **Confirmed KPIs** are values stated explicitly in a message or call, not independently checked.
