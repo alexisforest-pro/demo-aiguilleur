@@ -54,6 +54,7 @@ The project started from the Mistral Workflows starter template and was reorgani
 | `worker/start_with_reload.py` | `make start-worker`: runs `worker.start` and restarts it when a `.py` file in `worker/` or `backend/` changes. |
 | `worker/run_workflow.py` | `make execute`: starts one workflow run from the command line. |
 | `tests/test_incidents.py` | Focused tests. No network, no microphone. |
+| `reference/ui_sketch.png` | UI sketch from the brief. Not used by the code. |
 | `examples/` | Starter-template sample workflows (including `hello.py`), run only by `make start-examples`. Leave them alone unless asked. |
 
 ### Named workflows
