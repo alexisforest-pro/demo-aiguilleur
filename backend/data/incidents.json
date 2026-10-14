@@ -270,7 +270,7 @@
       "region": "Bourgogne-Franche-Comté",
       "started_at": "2026-10-13T09:25:00+00:00",
       "estimated_end": "11:55 UTC",
-      "owner": "Thien Lacombe",
+      "owner": "Alexandre Lacombe",
       "description": "Occupation permanente d’une zone de détection. Circulation sous procédure de secours sur le secteur du Creusot. Diagnostic des installations en cours.",
       "summary": "Une occupation permanente de zone perturbe la signalisation sur la LGV Paris – Lyon au Creusot. Les trains circulent sous procédure de secours. Huit trains et 950 voyageurs sont concernés, avec un retard estimé de 25 à 40 minutes et aucune suppression annoncée. Deux équipes procèdent au diagnostic ; retour nominal envisagé à 11:55 UTC, après essais.",
       "related_ids": [],
@@ -278,7 +278,7 @@
         {
           "id": "EVT-042-01",
           "type": "message",
-          "author": "Thien Lacombe",
+          "author": "Alexandre Lacombe",
           "role": "Régulation LGV",
           "created_at": "2026-10-13T09:25:00+00:00",
           "content": "Zone de détection occupée en permanence à Vaux-en-Pré. La procédure de secours est appliquée. Diagnostic signalisation demandé."
@@ -286,16 +286,16 @@
         {
           "id": "EVT-042-02",
           "type": "call",
-          "author": "Thien Lacombe",
+          "author": "Alexandre Lacombe",
           "role": "Coordination opérationnelle",
           "created_at": "2026-10-13T09:52:00+00:00",
           "title": "Coordination · diagnostic signalisation",
           "status": "termine",
           "participants": [
-            "Thien Lacombe",
+            "Alexandre Lacombe",
             "Emmanuel Royer"
           ],
-          "transcript": "00:00 — Thien Lacombe : Les trains progressent sous procédure de secours.\n01:15 — Emmanuel Royer : Un défaut de connexion est suspecté. Deux équipes contrôlent la zone.\n04:00 — Thien Lacombe : Priorité au diagnostic et aux essais avant tout retour nominal.",
+          "transcript": "00:00 — Alexandre Lacombe : Les trains progressent sous procédure de secours.\n01:15 — Emmanuel Royer : Un défaut de connexion est suspecté. Deux équipes contrôlent la zone.\n04:00 — Alexandre Lacombe : Priorité au diagnostic et aux essais avant tout retour nominal.",
           "summary": "Un défaut de connexion est suspecté. Deux équipes contrôlent la zone de détection. La procédure de secours est maintenue jusqu’à la fin des essais.",
           "duration_seconds": 480,
           "synthetic": true,
@@ -604,7 +604,7 @@
         {
           "id": "EVT-044-02",
           "type": "message",
-          "author": "Thien Morvan",
+          "author": "Alexandre Morvan",
           "role": "Maintenance voie",
           "created_at": "2026-10-13T10:45:00+00:00",
           "content": "Deux équipes sur place pour dégager la branche. Contrôle de la voie demandé avant la reprise."
