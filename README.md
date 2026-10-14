@@ -112,7 +112,6 @@ demo-aiguilleur/
 │   └── run_workflow.py              # Starts one workflow run from the command line (make execute)
 ├── tests/test_incidents.py          # Focused tests, no network calls
 ├── reference/ui_sketch.png          # UI sketch from the brief
-├── examples/                        # Sample workflows from the starter template, unused by the app
 ├── Makefile                         # All commands
 ├── AGENTS.md                        # Guidance for coding agents
 └── Dockerfile                       # Worker image
@@ -169,7 +168,7 @@ uv run python .agents/skills/workflows/scripts/test_workflow.py worker/workflows
 
 ## Deployment
 
-The `Dockerfile` builds **the worker only** (the frontend, tests, examples and reference sketch are left out): Mistral Cloud runs it and it discovers all five workflows in `worker/workflows/` automatically. The web UI is not containerized; run it with `make demo`.
+The `Dockerfile` builds **the worker only** (the frontend and tests are left out): Mistral Cloud runs it and it discovers all five workflows in `worker/workflows/` automatically. The web UI is not containerized; run it with `make demo`.
 
 ```bash
 make docker-build

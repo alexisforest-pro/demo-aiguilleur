@@ -14,7 +14,6 @@ build/
 # Dev-only; the worker never imports these.
 .agents/
 .vibe/
-examples/
 frontend/
 reference/
 tests/
