@@ -1,0 +1,2709 @@
+{
+  "schema_version": 1,
+  "timezone": "UTC",
+  "kpi_definitions": [
+    {
+      "key": "passengers",
+      "label": "Impact passager"
+    },
+    {
+      "key": "trains",
+      "label": "Impact train"
+    },
+    {
+      "key": "delay",
+      "label": "Délai estimé"
+    },
+    {
+      "key": "cancelled",
+      "label": "Trains supprimés"
+    },
+    {
+      "key": "teams",
+      "label": "Équipes mobilisées"
+    },
+    {
+      "key": "recovery",
+      "label": "Reprise estimée"
+    }
+  ],
+  "operator": {
+    "name": "Julien Mercadier",
+    "role": "Coordination opérationnelle"
+  },
+  "call_defaults": {
+    "title": "Appel de coordination",
+    "microphone_participants": [
+      "Vous"
+    ]
+  },
+  "synthetic_call": {
+    "participants": [
+      "{operator_name}",
+      "{incident_owner}"
+    ],
+    "transcript": "00:00 — {operator_name} : Ceci est un appel de démonstration ; nous consolidons le bilan.\n00:30 — {incident_owner} : La situation décrite dans l’en-tête reste notre point de référence.\n01:10 — {operator_name} : Le nouveau bilan annoncé est de 2 400 voyageurs, 15 trains impactés, dont 4 supprimés. Le retard estimé est de 60 à 90 minutes et 5 équipes sont mobilisées.\n02:00 — {incident_owner} : La reprise reste estimée à {estimated_end}, sous réserve de la validation technique.\n02:30 — {operator_name} : Prévoir un nouveau point après les contrôles terrain."
+  },
+  "incidents": [
+    {
+      "id": "INC-2026-041",
+      "title": "Incident caténaire à Montmélian",
+      "category": "Défaut d’alimentation",
+      "severity": "G3",
+      "status": "En cours",
+      "location": "Montmélian → Grenoble · PK 12,8",
+      "line": "Grenoble – Montmélian",
+      "region": "Alpes",
+      "started_at": "2026-10-13T08:30:00+00:00",
+      "estimated_end": "12:25 UTC",
+      "owner": "Giuliana Ferrandi",
+      "description": "Absence de tension sur la voie 1. Circulation interrompue entre Montmélian et Pontcharra. Salle de crise territoriale ouverte. Aucun blessé signalé.",
+      "summary": "**Résumé — INC-2026-041 · Incident caténaire à Montmélian (G3, en cours)**\n\nRupture du fil de contact confirmée au PK 12,8 sur la voie 1, entre Montmélian et Pontcharra. Circulation interrompue sur cette voie ; la voie 2 reste exploitée sous régulation. **Bilan confirmé** : 1 850 voyageurs concernés, 12 trains impactés dont 3 supprimés, retards estimés à 45–90 min. Quatre équipes mobilisées pour le remplacement du fil. Information voyageurs diffusée, distribution d'eau en gares, plan de transport adapté en vigueur. **Reprise progressive estimée à 12:25 UTC**, sous réserve de validation technique terrain. Aucun blessé signalé.",
+      "related_ids": [
+        "INC-2026-042",
+        "INC-2026-043"
+      ],
+      "events": [
+        {
+          "id": "EVT-041-01",
+          "type": "message",
+          "author": "Giuliana Ferrandi",
+          "role": "Régulation Alpes",
+          "created_at": "2026-10-13T08:30:00+00:00",
+          "content": "Signalement : absence de tension sur la voie 1 au PK 12,8. Circulation suspendue entre Montmélian et Pontcharra. Protection de la zone demandée, aucun blessé signalé."
+        },
+        {
+          "id": "EVT-041-02",
+          "type": "message",
+          "author": "Tom Vasseur",
+          "role": "Maintenance caténaire",
+          "created_at": "2026-10-13T08:48:00+00:00",
+          "content": "Rupture du fil de contact confirmée. Deux équipes sont en route. La voie 2 reste disponible sous régulation ; pas de remise sous tension avant contrôle terrain."
+        },
+        {
+          "id": "EVT-041-03",
+          "type": "call",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2026-10-13T09:07:00+00:00",
+          "title": "Point de coordination · diagnostic et sécurisation",
+          "status": "termine",
+          "participants": [
+            "Giuliana Ferrandi",
+            "Tom Vasseur",
+            "Caroline Brunet"
+          ],
+          "transcript": "00:00 — Giuliana Ferrandi : La zone est protégée et la voie 1 reste fermée.\n01:10 — Tom Vasseur : Le fil de contact doit être remplacé. Deux équipes sont mobilisées pour le diagnostic.\n03:20 — Caroline Brunet : L’information voyageurs est diffusée dans les gares. Nous préparons un plan de transport adapté.\n06:30 — Giuliana Ferrandi : Maintenir les trains sur la voie 2 sous régulation. Aucun blessé. Prochain point après le diagnostic complet.",
+          "summary": "La zone a été sécurisée et la voie 1 reste fermée. Le remplacement du fil de contact est nécessaire. L’information voyageurs et un plan de transport adapté sont en préparation. Décision : maintenir la voie 2 sous régulation et attendre la validation terrain avant toute remise sous tension.",
+          "duration_seconds": 480,
+          "synthetic": true,
+          "error": null
+        },
+        {
+          "id": "EVT-041-04",
+          "type": "message",
+          "author": "Caroline Brunet",
+          "role": "Coordination voyageurs",
+          "created_at": "2026-10-13T10:36:00+00:00",
+          "content": "Bilan actualisé : 1 850 voyageurs concernés, 12 trains impactés dont 3 supprimés. Retard estimé : 45 à 90 min. Quatre équipes (4) sont désormais mobilisées. Reprise progressive estimée à 12:25 UTC, sous réserve du contrôle de la caténaire. Distribution d’eau dans les deux gares."
+        },
+        {
+          "id": "EVT-041-05",
+          "type": "call",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2026-10-13T11:03:00+00:00",
+          "title": "Point de situation · préparation de la reprise",
+          "status": "termine",
+          "participants": [
+            "Giuliana Ferrandi",
+            "Tom Vasseur",
+            "Caroline Brunet"
+          ],
+          "transcript": "00:00 — Giuliana Ferrandi : Nous faisons le point sur la préparation de la reprise.\n00:40 — Tom Vasseur : Les quatre équipes poursuivent les travaux. L’horaire envisagé reste 12:25 UTC, à confirmer après essais.\n01:30 — Caroline Brunet : Le bilan reste de 1 850 voyageurs, 12 trains touchés et 3 suppressions.\n02:10 — Giuliana Ferrandi : Le plan adapté reste en vigueur. Aucun changement de consigne sans validation terrain.",
+          "summary": "**Résumé — Appel EVT-041-05 (13/10/2026, 11:03 UTC)**\n\n**Faits nouveaux :** Quatre équipes poursuivent les travaux. Bilan maintenu : 1 850 voyageurs, 12 trains touchés, 3 suppressions.\n\n**Décisions rapportées :** Horaire de reprise envisagé à **12:25 UTC** (soumis à confirmation après essais). Plan adapté toujours en vigueur.\n\n**Actions :** Aucune action spécifique citée avec responsable.\n\n**Points à confirmer :** L'horaire de 12:25 UTC après essais ; toute modification de consigne nécessite une validation terrain.\n\n*Décisions soumises à validation humaine.*",
+          "duration_seconds": 0,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2026-10-13T16:54:45.307604+00:00",
+          "summary_source": "mistral",
+          "summary_updated_at": "2026-10-13T16:54:51.866184+00:00"
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "value": "1 850 voyageurs concernés",
+            "status": "confirmed",
+            "source": "EVT-041-05",
+            "label": "Impact passager"
+          },
+          {
+            "key": "trains",
+            "value": "12 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-041-05",
+            "label": "Impact train"
+          },
+          {
+            "key": "delay",
+            "value": "45 à 90 min",
+            "status": "estimated",
+            "source": "EVT-041-04",
+            "label": "Délai estimé"
+          },
+          {
+            "key": "cancelled",
+            "value": "3 trains supprimés",
+            "status": "confirmed",
+            "source": "EVT-041-05",
+            "label": "Trains supprimés"
+          },
+          {
+            "key": "teams",
+            "value": "4 équipes mobilisées",
+            "status": "confirmed",
+            "source": "EVT-041-05",
+            "label": "Équipes mobilisées"
+          },
+          {
+            "key": "recovery",
+            "value": "12:25 UTC (envisagé, à confirmer après essais)",
+            "status": "estimated",
+            "source": "EVT-041-05",
+            "label": "Reprise estimée"
+          }
+        ],
+        "origin": "mistral",
+        "updated_at": "2026-10-26T18:32:20.905398+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [
+        {
+          "id": "REX-2025-184",
+          "title": "Rupture de caténaire à Chambéry",
+          "date": "2025-11-18",
+          "location": "Chambéry · Alpes",
+          "category": "Défaut d’alimentation",
+          "severity": "G3",
+          "confidence": 94,
+          "summary": "Interruption sur une voie après rupture du fil de contact. Reprise progressive après 2 h 40 de réparation et essais. Le plan de transport a privilégié la voie disponible et l’information en gare.",
+          "url": "/archives/REX-2025-184"
+        },
+        {
+          "id": "REX-2025-098",
+          "title": "Perte de tension à Voiron",
+          "date": "2025-06-07",
+          "location": "Voiron · Alpes",
+          "category": "Défaut d’alimentation",
+          "severity": "G2",
+          "confidence": 87,
+          "summary": "Défaut d’alimentation isolé après contrôle des installations. Circulation alternée pendant 1 h 55. La disponibilité immédiate des pièces a limité le délai de réparation.",
+          "url": "/archives/REX-2025-098"
+        },
+        {
+          "id": "REX-2024-267",
+          "title": "Avarie caténaire dans la vallée du Rhône",
+          "date": "2024-10-03",
+          "location": "Valence · Rhône-Alpes",
+          "category": "Défaut d’alimentation",
+          "severity": "G3",
+          "confidence": 79,
+          "summary": "Avarie de caténaire et mobilisation de quatre équipes. Reprise en trois phases après contrôle technique. Mise en place d’un transport de substitution pour les voyageurs immobilisés.",
+          "url": "/archives/REX-2024-267"
+        }
+      ],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2026-10-13T15:37:27.249802+00:00",
+      "summary_source": "mistral"
+    },
+    {
+      "id": "INC-2026-042",
+      "title": "Dérangement de signalisation au Creusot",
+      "category": "Installations de signalisation",
+      "severity": "G2",
+      "status": "En cours",
+      "location": "Le Creusot → Vaux-en-Pré · PK 273,4",
+      "line": "LGV Paris – Lyon",
+      "region": "Bourgogne-Franche-Comté",
+      "started_at": "2026-10-13T09:25:00+00:00",
+      "estimated_end": "11:55 UTC",
+      "owner": "Alexandre Lacombe",
+      "description": "Occupation permanente d’une zone de détection. Circulation sous procédure de secours sur le secteur du Creusot. Diagnostic des installations en cours.",
+      "summary": "Une occupation permanente de zone perturbe la signalisation sur la LGV Paris – Lyon au Creusot. Les trains circulent sous procédure de secours. Huit trains et 950 voyageurs sont concernés, avec un retard estimé de 25 à 40 minutes et aucune suppression annoncée. Deux équipes procèdent au diagnostic ; retour nominal envisagé à 11:55 UTC, après essais.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-042-01",
+          "type": "message",
+          "author": "Alexandre Lacombe",
+          "role": "Régulation LGV",
+          "created_at": "2026-10-13T09:25:00+00:00",
+          "content": "Zone de détection occupée en permanence à Vaux-en-Pré. La procédure de secours est appliquée. Diagnostic signalisation demandé."
+        },
+        {
+          "id": "EVT-042-02",
+          "type": "call",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2026-10-13T09:52:00+00:00",
+          "title": "Coordination · diagnostic signalisation",
+          "status": "termine",
+          "participants": [
+            "Alexandre Lacombe",
+            "Emmanuel Royer"
+          ],
+          "transcript": "00:00 — Alexandre Lacombe : Les trains progressent sous procédure de secours.\n01:15 — Emmanuel Royer : Un défaut de connexion est suspecté. Deux équipes contrôlent la zone.\n04:00 — Alexandre Lacombe : Priorité au diagnostic et aux essais avant tout retour nominal.",
+          "summary": "Un défaut de connexion est suspecté. Deux équipes contrôlent la zone de détection. La procédure de secours est maintenue jusqu’à la fin des essais.",
+          "duration_seconds": 480,
+          "synthetic": true,
+          "error": null
+        },
+        {
+          "id": "EVT-042-03",
+          "type": "message",
+          "author": "Emmanuel Royer",
+          "role": "Maintenance signalisation",
+          "created_at": "2026-10-13T10:51:00+00:00",
+          "content": "Bilan : 8 trains et 950 voyageurs impactés. Aucune suppression (0). Retard estimé de 25 à 40 min. Deux équipes (2) mobilisées ; retour nominal envisagé à 11:55 UTC après les essais."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "value": "950 voyageurs impactés",
+            "status": "estimated",
+            "source": "EVT-042-03",
+            "label": "Impact passager"
+          },
+          {
+            "key": "trains",
+            "value": "8 trains impactés",
+            "status": "estimated",
+            "source": "EVT-042-03",
+            "label": "Impact train"
+          },
+          {
+            "key": "delay",
+            "value": "25 à 40 min",
+            "status": "estimated",
+            "source": "EVT-042-03",
+            "label": "Délai estimé"
+          },
+          {
+            "key": "cancelled",
+            "value": "0 suppression",
+            "status": "confirmed",
+            "source": "EVT-042-03",
+            "label": "Trains supprimés"
+          },
+          {
+            "key": "teams",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "EVT-042-03",
+            "label": "Équipes mobilisées"
+          },
+          {
+            "key": "recovery",
+            "value": "11:55 UTC envisagé",
+            "status": "estimated",
+            "source": "EVT-042-03",
+            "label": "Reprise estimée"
+          }
+        ],
+        "origin": "mistral",
+        "updated_at": "2026-10-26T18:32:25.684076+00:00",
+        "revision": 3,
+        "status": "ready",
+        "error": null
+      },
+      "history": [
+        {
+          "id": "REX-2025-231",
+          "title": "Zone de détection occupée à Mâcon",
+          "date": "2025-12-04",
+          "location": "Mâcon · Bourgogne",
+          "category": "Installations de signalisation",
+          "severity": "G2",
+          "confidence": 92,
+          "summary": "Défaut de connexion sur une zone de détection. Circulation sous procédure de secours pendant 1 h 20, sans suppression. Retour nominal après remplacement du connecteur et essais.",
+          "url": "/archives/REX-2025-231"
+        },
+        {
+          "id": "REX-2025-071",
+          "title": "Défaut de signalisation à Dijon",
+          "date": "2025-04-19",
+          "location": "Dijon · Bourgogne",
+          "category": "Installations de signalisation",
+          "severity": "G2",
+          "confidence": 85,
+          "summary": "Dérangement de signalisation résolu après contrôle terrain. La diffusion d’un point de situation commun a réduit les messages contradictoires aux gares.",
+          "url": "/archives/REX-2025-071"
+        },
+        {
+          "id": "REX-2024-319",
+          "title": "Anomalie de circuit de voie à Sens",
+          "date": "2024-12-11",
+          "location": "Sens · Bourgogne",
+          "category": "Installations de signalisation",
+          "severity": "G1",
+          "confidence": 76,
+          "summary": "Anomalie intermittente d’un circuit de voie. Surveillance renforcée et intervention de deux équipes. Retards limités par un plan de circulation adapté.",
+          "url": "/archives/REX-2024-319"
+        }
+      ],
+      "synthetic": true,
+      "revision": 3,
+      "summary_revision": 3,
+      "summary_updated_at": "2026-10-13T11:07:00+00:00",
+      "summary_source": "demo"
+    },
+    {
+      "id": "INC-2026-043",
+      "title": "Vents violents dans la vallée du Rhône",
+      "category": "Aléas climatiques",
+      "severity": "G2",
+      "status": "En cours",
+      "location": "Valence → Avignon · secteur vallée du Rhône",
+      "line": "Lyon – Marseille",
+      "region": "Rhône-Alpes",
+      "started_at": "2026-10-13T08:00:00+00:00",
+      "estimated_end": "12:50 UTC",
+      "owner": "Emmanuel Garcin",
+      "description": "Rafales de 100 km/h signalées. Limitations de vitesse préventives et inspections des emprises. Risque de végétation sur les voies ; aucune collision signalée.",
+      "summary": "**Résumé — INC-2026-043 · Vents violents en vallée du Rhône (G2, en cours)**\n\nRafales de 100 km/h sur l'axe Lyon–Marseille (Valence → Avignon) depuis 08h00 UTC. Limitations de vitesse préventives et inspections des emprises par trois équipes ; aucune collision ni blessé signalé.\n\n**Impacts confirmés** (point consolidé 10h59 UTC) : 3 200 voyageurs concernés, 22 trains impactés dont 2 supprimés, retards estimés à 30–60 minutes.\n\n**Actions** : maintien des limitations, inspections en cours, plan de transport adapté aux retards et correspondances.\n\n**Reprise estimée** : retour progressif envisagé à **12h50 UTC**, sous réserve de l'évolution météo et des contrôles terrain.",
+      "related_ids": [
+        "INC-2026-041",
+        "INC-2026-042"
+      ],
+      "events": [
+        {
+          "id": "EVT-043-01",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Veille opérationnelle",
+          "created_at": "2026-10-13T08:00:00+00:00",
+          "content": "Rafales de 100 km/h relevées en vallée du Rhône. Limitations de vitesse préventives en place. Demande d’inspection des emprises et de la végétation."
+        },
+        {
+          "id": "EVT-043-02",
+          "type": "message",
+          "author": "Tom Kerbrat",
+          "role": "Maintenance voie",
+          "created_at": "2026-10-13T09:00:00+00:00",
+          "content": "Trois équipes inspectent les secteurs exposés. Aucune collision ni blessé signalé. Surveillance renforcée sur les zones arborées."
+        },
+        {
+          "id": "EVT-043-03",
+          "type": "call",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2026-10-13T09:35:00+00:00",
+          "title": "Point météo et plan de transport",
+          "status": "termine",
+          "participants": [
+            "Emmanuel Garcin",
+            "Tom Kerbrat",
+            "Giuliana Peyrac"
+          ],
+          "transcript": "00:00 — Emmanuel Garcin : Les rafales persistent. Les limitations restent en place.\n02:00 — Tom Kerbrat : Les trois équipes poursuivent les inspections. Aucun obstacle majeur trouvé pour le moment.\n04:20 — Giuliana Peyrac : Le plan de transport doit intégrer les retards sur l’axe et les correspondances.\n06:10 — Emmanuel Garcin : Réévaluation après le prochain bulletin et les retours terrain.",
+          "summary": "Maintien des limitations de vitesse et des inspections par trois équipes. Le plan de transport est adapté aux retards et aux correspondances. Réévaluation après le prochain bulletin météo et les contrôles terrain.",
+          "duration_seconds": 480,
+          "synthetic": true,
+          "error": null
+        },
+        {
+          "id": "EVT-043-04",
+          "type": "message",
+          "author": "Giuliana Peyrac",
+          "role": "Coordination voyageurs",
+          "created_at": "2026-10-13T10:59:00+00:00",
+          "content": "Point consolidé : 3 200 voyageurs concernés, 22 trains impactés dont 2 supprimés. Retard estimé de 30 à 60 min. Trois équipes (3) mobilisées. Retour progressif envisagé à 12:50 UTC, selon la météo et les inspections."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "value": "3 200 voyageurs concernés",
+            "status": "estimated",
+            "source": "EVT-043-04",
+            "label": "Impact passager"
+          },
+          {
+            "key": "trains",
+            "value": "22 trains impactés",
+            "status": "estimated",
+            "source": "EVT-043-04",
+            "label": "Impact train"
+          },
+          {
+            "key": "delay",
+            "value": "30 à 60 min",
+            "status": "estimated",
+            "source": "EVT-043-04",
+            "label": "Délai estimé"
+          },
+          {
+            "key": "cancelled",
+            "value": "2 trains supprimés",
+            "status": "confirmed",
+            "source": "EVT-043-04",
+            "label": "Trains supprimés"
+          },
+          {
+            "key": "teams",
+            "value": "3 équipes mobilisées",
+            "status": "confirmed",
+            "source": "EVT-043-04",
+            "label": "Équipes mobilisées"
+          },
+          {
+            "key": "recovery",
+            "value": "Retour progressif envisagé à 12:50 UTC",
+            "status": "estimated",
+            "source": "EVT-043-04",
+            "label": "Reprise estimée"
+          }
+        ],
+        "origin": "mistral",
+        "updated_at": "2026-10-26T18:32:29.835045+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [
+        {
+          "id": "REX-2025-152",
+          "title": "Tempête sur l’axe Lyon – Marseille",
+          "date": "2025-09-22",
+          "location": "Vallée du Rhône",
+          "category": "Aléas climatiques",
+          "severity": "G2",
+          "confidence": 93,
+          "summary": "Rafales à 105 km/h et limitations de vitesse. Inspections ciblées sur les zones arborées ; reprise après accalmie et validation terrain. Trois heures de perturbation.",
+          "url": "/archives/REX-2025-152"
+        },
+        {
+          "id": "REX-2025-034",
+          "title": "Vents forts entre Valence et Orange",
+          "date": "2025-02-16",
+          "location": "Valence – Orange",
+          "category": "Aléas climatiques",
+          "severity": "G2",
+          "confidence": 88,
+          "summary": "Vents forts et branches à proximité des voies. La coordination météo et maintenance a permis une levée progressive des limitations par secteur.",
+          "url": "/archives/REX-2025-034"
+        },
+        {
+          "id": "REX-2024-206",
+          "title": "Épisode venteux en Provence",
+          "date": "2024-08-29",
+          "location": "Avignon · Provence",
+          "category": "Aléas climatiques",
+          "severity": "G1",
+          "confidence": 78,
+          "summary": "Limitations préventives pendant deux heures. L’information anticipée des voyageurs a limité les ruptures de correspondance.",
+          "url": "/archives/REX-2024-206"
+        }
+      ],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2026-10-26T18:33:15.465636+00:00",
+      "summary_source": "mistral"
+    },
+    {
+      "id": "INC-2026-044",
+      "title": "Obstacle sur la voie à Étampes",
+      "category": "Obstacle sur la voie",
+      "severity": "G1",
+      "status": "En cours",
+      "location": "Étampes · PK 55,6",
+      "line": "Paris – Orléans",
+      "region": "Paris-Sud-Ouest",
+      "started_at": "2026-10-13T10:28:00+00:00",
+      "estimated_end": "11:45 UTC",
+      "owner": "Caroline Lemaître",
+      "description": "Branche tombée sur la voie 2 après une rafale. Zone protégée. Circulation reportée sur la voie 1 ; intervention de dégagement en cours.",
+      "summary": "Une branche obstrue la voie 2 à Étampes. La zone est protégée et la circulation utilise la voie 1. Six trains et 680 voyageurs sont concernés, avec une suppression et 20 à 35 minutes de retard estimé. Deux équipes procèdent au dégagement et au contrôle ; reprise estimée à 11:45 UTC. Aucun blessé signalé.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-044-01",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Régulation Paris-Sud-Ouest",
+          "created_at": "2026-10-13T10:28:00+00:00",
+          "content": "Branche sur la voie 2 au PK 55,6 à Étampes. Protection réalisée. Circulation reportée sur voie 1. Aucun blessé signalé."
+        },
+        {
+          "id": "EVT-044-02",
+          "type": "message",
+          "author": "Alexandre Morvan",
+          "role": "Maintenance voie",
+          "created_at": "2026-10-13T10:45:00+00:00",
+          "content": "Deux équipes sur place pour dégager la branche. Contrôle de la voie demandé avant la reprise."
+        },
+        {
+          "id": "EVT-044-03",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Régulation Paris-Sud-Ouest",
+          "created_at": "2026-10-13T11:02:00+00:00",
+          "content": "Bilan : 680 voyageurs, 6 trains impactés dont 1 supprimé. Retard estimé de 20 à 35 min. Deux équipes (2) mobilisées. Reprise estimée à 11:45 UTC, après dégagement et contrôle."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "value": "680 voyageurs",
+            "status": "estimated",
+            "source": "EVT-044-03",
+            "label": "Impact passager"
+          },
+          {
+            "key": "trains",
+            "value": "6 trains impactés",
+            "status": "estimated",
+            "source": "EVT-044-03",
+            "label": "Impact train"
+          },
+          {
+            "key": "delay",
+            "value": "20 à 35 min",
+            "status": "estimated",
+            "source": "EVT-044-03",
+            "label": "Délai estimé"
+          },
+          {
+            "key": "cancelled",
+            "value": "1 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-044-03",
+            "label": "Trains supprimés"
+          },
+          {
+            "key": "teams",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "EVT-044-03",
+            "label": "Équipes mobilisées"
+          },
+          {
+            "key": "recovery",
+            "value": "11:45 UTC",
+            "status": "estimated",
+            "source": "EVT-044-03",
+            "label": "Reprise estimée"
+          }
+        ],
+        "origin": "mistral",
+        "updated_at": "2026-10-26T18:32:33.510652+00:00",
+        "revision": 3,
+        "status": "ready",
+        "error": null
+      },
+      "history": [
+        {
+          "id": "REX-2025-118",
+          "title": "Chute de branche à Dourdan",
+          "date": "2025-07-03",
+          "location": "Dourdan · Île-de-France",
+          "category": "Obstacle sur la voie",
+          "severity": "G1",
+          "confidence": 91,
+          "summary": "Branche retirée par deux équipes. Contrôle de la voie et reprise en 55 minutes. Circulation maintenue sur la voie adjacente sous régulation.",
+          "url": "/archives/REX-2025-118"
+        },
+        {
+          "id": "REX-2025-022",
+          "title": "Végétation sur les voies à Angerville",
+          "date": "2025-01-24",
+          "location": "Angerville · Centre",
+          "category": "Obstacle sur la voie",
+          "severity": "G1",
+          "confidence": 84,
+          "summary": "Dégagement d’un arbre après rafales. Le contrôle des deux voies a retardé la reprise mais évité une seconde interruption.",
+          "url": "/archives/REX-2025-022"
+        },
+        {
+          "id": "REX-2024-175",
+          "title": "Obstacle naturel près d’Orléans",
+          "date": "2024-06-16",
+          "location": "Orléans · Centre-Val de Loire",
+          "category": "Obstacle sur la voie",
+          "severity": "G1",
+          "confidence": 75,
+          "summary": "Dégagement d’un obstacle naturel et inspection terrain. Plan de transport adapté, un train supprimé et information voyageurs en gare.",
+          "url": "/archives/REX-2024-175"
+        }
+      ],
+      "synthetic": true,
+      "revision": 3,
+      "summary_revision": 3,
+      "summary_updated_at": "2026-10-13T11:07:00+00:00",
+      "summary_source": "demo"
+    },
+    {
+      "id": "REX-2025-184",
+      "title": "Rupture de caténaire à Chambéry",
+      "category": "Défaut d’alimentation",
+      "severity": "G3",
+      "status": "Terminé",
+      "location": "Chambéry · Alpes",
+      "line": "Chambéry – Montmélian",
+      "region": "Alpes",
+      "started_at": "2025-11-18T08:10:00+00:00",
+      "ended_at": "2025-11-18T10:50:00+00:00",
+      "estimated_end": "10:50 UTC",
+      "owner": "Giuliana Ferrandi",
+      "description": "Scénario historique synthétique de démonstration. À Chambéry, la rupture du fil de contact a provoqué une absence de tension sur une voie. Après protection électrique, les équipes ont remplacé la portion endommagée et réalisé les essais. La voie disponible a accueilli un plan de circulation adapté ; la reprise progressive a débuté après 2 h 40.",
+      "summary": "Interruption sur une voie après rupture du fil de contact. Reprise progressive après 2 h 40 de réparation et essais. Le plan de transport a privilégié la voie disponible et l’information en gare.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-184-01",
+          "type": "message",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-11-18T08:10:00+00:00",
+          "content": "Signalement synthétique : Rupture de caténaire à Chambéry — Chambéry · Alpes. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-184-02",
+          "type": "message",
+          "author": "Tom Vasseur",
+          "role": "Coordination technique",
+          "created_at": "2025-11-18T08:25:00+00:00",
+          "content": "Point terrain de démonstration : La rupture est localisée sur une portion de fil usée près d’un point de suspension. Trois équipes mobilisées pour la consignation, le remplacement et les essais ; la voie adjacente reste disponible sous régulation."
+        },
+        {
+          "id": "CALL-REX-2025-184-01",
+          "type": "call",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-11-18T10:52:00+00:00",
+          "title": "Bilan de clôture · Rupture de caténaire à Chambéry",
+          "status": "termine",
+          "participants": [
+            "Giuliana Ferrandi",
+            "Tom Vasseur"
+          ],
+          "transcript": "00:00 — Giuliana Ferrandi : Appel synthétique de démonstration, bilan de Rupture de caténaire à Chambéry.\n00:30 — Tom Vasseur : Fil remplacé, essais électriques et passage de contrôle satisfaisants. Reprise progressive autorisée ; information des gares actualisée. 3 équipes mobilisées.\n01:15 — Giuliana Ferrandi : Bilan de démonstration : 1 600 voyageurs, 10 trains impactés, 2 trains supprimés. Retards estimés : 40 à 75 minutes. 3 équipes mobilisées. Reprise constatée à 10:50 UTC.\n02:00 — Tom Vasseur : Première action : Mesurer l’usure aux points de suspension voisins, responsable Tom Vasseur, échéance 2025-12-02.\n02:30 — Giuliana Ferrandi : Deuxième action : Adapter la tournée caténaire aux points sensibles, responsable Giuliana Ferrandi, échéance 2026-01-02. Troisième action : Tester le plan voyageurs en exploitation sur une seule voie, responsable Caroline Brunet, échéance 2026-02-16.",
+          "summary": "Exemple synthétique de bilan de clôture. Fil remplacé, essais électriques et passage de contrôle satisfaisants. Reprise progressive autorisée ; information des gares actualisée. Bilan de démonstration : 1 600 voyageurs, 10 trains impactés, 2 trains supprimés. Retards estimés : 40 à 75 minutes. 3 équipes mobilisées. Reprise constatée à 10:50 UTC. Actions retenues : Mesurer l’usure aux points de suspension voisins — Tom Vasseur; Adapter la tournée caténaire aux points sensibles — Giuliana Ferrandi; Tester le plan voyageurs en exploitation sur une seule voie — Caroline Brunet.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-11-18T10:55:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-11-18T10:56:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-184-03",
+          "type": "message",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-11-18T10:58:00+00:00",
+          "content": "Fil remplacé, essais électriques et passage de contrôle satisfaisants. Reprise progressive autorisée ; information des gares actualisée. Bilan de démonstration : 1 600 voyageurs, 10 trains impactés, 2 trains supprimés. Retards estimés : 40 à 75 minutes. 3 équipes mobilisées. Reprise constatée à 10:50 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "1 600 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-184-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "10 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-184-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "40 à 75 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-184-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "2 trains supprimés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-184-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "3 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-184-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "10:50 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-184-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-11-18T11:00:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-11-18T11:00:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "À Chambéry, la rupture du fil de contact a provoqué une absence de tension sur une voie. Après protection électrique, les équipes ont remplacé la portion endommagée et réalisé les essais. La voie disponible a accueilli un plan de circulation adapté ; la reprise progressive a débuté après 2 h 40.",
+        "consequences": "1 600 voyageurs et 10 trains ont été concernés, dont 2 supprimés, avec des retards de 40 à 75 minutes. L’information en gare et le report sur la voie disponible ont limité les immobilisations. Aucun blessé dans ce scénario de démonstration.",
+        "five_whys": [
+          {
+            "question": "Pourquoi une voie a-t-elle été interrompue ?",
+            "answer": "La rupture du fil de contact empêchait une alimentation sûre des trains."
+          },
+          {
+            "question": "Pourquoi le fil de contact a-t-il rompu ?",
+            "answer": "Une usure localisée près d’un point de suspension avait réduit sa section utile."
+          },
+          {
+            "question": "Pourquoi cette usure n’a-t-elle pas été traitée avant la rupture ?",
+            "answer": "La dernière inspection visuelle ne comportait pas de mesure précise sur ce point singulier."
+          },
+          {
+            "question": "Pourquoi ce point ne faisait-il pas l’objet d’une mesure ciblée ?",
+            "answer": "Le programme de contrôle suivait une périodicité uniforme malgré des sollicitations locales plus fortes."
+          },
+          {
+            "question": "Pourquoi le programme restait-il uniforme ?",
+            "answer": "Les observations de terrain n’étaient pas intégrées à une priorisation des points sensibles."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-184-A01",
+            "title": "Mesurer l’usure aux points de suspension voisins",
+            "owner": "Tom Vasseur",
+            "deadline": "2025-12-02",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-184-A02",
+            "title": "Adapter la tournée caténaire aux points sensibles",
+            "owner": "Giuliana Ferrandi",
+            "deadline": "2026-01-02",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2025-184-A03",
+            "title": "Tester le plan voyageurs en exploitation sur une seule voie",
+            "owner": "Caroline Brunet",
+            "deadline": "2026-02-16",
+            "status": "a_faire"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2025-098",
+      "title": "Perte de tension à Voiron",
+      "category": "Défaut d’alimentation",
+      "severity": "G2",
+      "status": "Terminé",
+      "location": "Voiron · Alpes",
+      "line": "Lyon – Grenoble",
+      "region": "Alpes",
+      "started_at": "2025-06-07T06:40:00+00:00",
+      "ended_at": "2025-06-07T08:35:00+00:00",
+      "estimated_end": "08:35 UTC",
+      "owner": "Giuliana Ferrandi",
+      "description": "Scénario historique synthétique de démonstration. Une perte de tension à Voiron a nécessité l’isolement du secteur d’alimentation. Le contrôle a identifié une connexion dégradée dans une armoire. La circulation alternée a été maintenue pendant 1 h 55 ; une pièce disponible au dépôt a permis un remplacement immédiat puis les essais.",
+      "summary": "Défaut d’alimentation isolé après contrôle des installations. Circulation alternée pendant 1 h 55. La disponibilité immédiate des pièces a limité le délai de réparation.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-098-01",
+          "type": "message",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-06-07T06:40:00+00:00",
+          "content": "Signalement synthétique : Perte de tension à Voiron — Voiron · Alpes. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-098-02",
+          "type": "message",
+          "author": "Tom Vasseur",
+          "role": "Coordination technique",
+          "created_at": "2025-06-07T06:55:00+00:00",
+          "content": "Point terrain de démonstration : Connexion d’alimentation dégradée identifiée après contrôle des installations. Deux équipes mobilisées ; le connecteur de remplacement est disponible au dépôt local. Circulation alternée maintenue."
+        },
+        {
+          "id": "CALL-REX-2025-098-01",
+          "type": "call",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-06-07T08:37:00+00:00",
+          "title": "Bilan de clôture · Perte de tension à Voiron",
+          "status": "termine",
+          "participants": [
+            "Giuliana Ferrandi",
+            "Tom Vasseur"
+          ],
+          "transcript": "00:00 — Giuliana Ferrandi : Appel synthétique de démonstration, bilan de Perte de tension à Voiron.\n00:30 — Tom Vasseur : Connexion remplacée et isolement levé après essais. Retour à une alimentation nominale et fin de la circulation alternée. 2 équipes mobilisées.\n01:15 — Giuliana Ferrandi : Bilan de démonstration : 900 voyageurs, 7 trains impactés, 0 train supprimé. Retards estimés : 20 à 45 minutes. 2 équipes mobilisées. Reprise constatée à 08:35 UTC.\n02:00 — Tom Vasseur : Première action : Ajouter le relevé de couple à la fiche de maintenance, responsable Tom Vasseur, échéance 2025-06-28.\n02:30 — Giuliana Ferrandi : Deuxième action : Garantir un stock minimal de connecteurs au dépôt, responsable Giuliana Ferrandi, échéance 2025-07-07. Troisième action : Contrôler par thermographie les armoires comparables, responsable Tom Vasseur, échéance 2025-08-06.",
+          "summary": "Exemple synthétique de bilan de clôture. Connexion remplacée et isolement levé après essais. Retour à une alimentation nominale et fin de la circulation alternée. Bilan de démonstration : 900 voyageurs, 7 trains impactés, 0 train supprimé. Retards estimés : 20 à 45 minutes. 2 équipes mobilisées. Reprise constatée à 08:35 UTC. Actions retenues : Ajouter le relevé de couple à la fiche de maintenance — Tom Vasseur; Garantir un stock minimal de connecteurs au dépôt — Giuliana Ferrandi; Contrôler par thermographie les armoires comparables — Tom Vasseur.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-06-07T08:40:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-06-07T08:41:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-098-03",
+          "type": "message",
+          "author": "Giuliana Ferrandi",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-06-07T08:43:00+00:00",
+          "content": "Connexion remplacée et isolement levé après essais. Retour à une alimentation nominale et fin de la circulation alternée. Bilan de démonstration : 900 voyageurs, 7 trains impactés, 0 train supprimé. Retards estimés : 20 à 45 minutes. 2 équipes mobilisées. Reprise constatée à 08:35 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "900 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-098-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "7 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-098-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "20 à 45 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-098-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "0 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-098-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-098-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "08:35 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-098-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-06-07T08:45:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-06-07T08:45:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "Une perte de tension à Voiron a nécessité l’isolement du secteur d’alimentation. Le contrôle a identifié une connexion dégradée dans une armoire. La circulation alternée a été maintenue pendant 1 h 55 ; une pièce disponible au dépôt a permis un remplacement immédiat puis les essais.",
+        "consequences": "900 voyageurs et 7 trains ont subi des retards de 20 à 45 minutes, sans suppression. Le stock local a évité l’attente d’une livraison. La circulation alternée a conservé une desserte pendant les travaux.",
+        "five_whys": [
+          {
+            "question": "Pourquoi la tension a-t-elle été perdue ?",
+            "answer": "Une connexion dégradée interrompait l’alimentation du secteur."
+          },
+          {
+            "question": "Pourquoi cette connexion s’est-elle dégradée ?",
+            "answer": "Un serrage insuffisant avait favorisé un échauffement progressif."
+          },
+          {
+            "question": "Pourquoi le serrage insuffisant n’a-t-il pas été détecté ?",
+            "answer": "Le contrôle précédent vérifiait le fonctionnement sans consigner le couple de serrage."
+          },
+          {
+            "question": "Pourquoi le couple n’était-il pas consigné ?",
+            "answer": "La fiche de maintenance de cette armoire ne prévoyait pas cette mesure."
+          },
+          {
+            "question": "Pourquoi la fiche ne prévoyait-elle pas cette mesure ?",
+            "answer": "Le retour d’expérience des connexions échauffées n’avait pas été traduit en contrôle obligatoire."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-098-A01",
+            "title": "Ajouter le relevé de couple à la fiche de maintenance",
+            "owner": "Tom Vasseur",
+            "deadline": "2025-06-28",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-098-A02",
+            "title": "Garantir un stock minimal de connecteurs au dépôt",
+            "owner": "Giuliana Ferrandi",
+            "deadline": "2025-07-07",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-098-A03",
+            "title": "Contrôler par thermographie les armoires comparables",
+            "owner": "Tom Vasseur",
+            "deadline": "2025-08-06",
+            "status": "en_cours"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2024-267",
+      "title": "Avarie caténaire dans la vallée du Rhône",
+      "category": "Défaut d’alimentation",
+      "severity": "G3",
+      "status": "Terminé",
+      "location": "Valence · Rhône-Alpes",
+      "line": "Lyon – Marseille",
+      "region": "Rhône-Alpes",
+      "started_at": "2024-10-03T07:15:00+00:00",
+      "ended_at": "2024-10-03T10:45:00+00:00",
+      "estimated_end": "10:45 UTC",
+      "owner": "Emmanuel Garcin",
+      "description": "Scénario historique synthétique de démonstration. À Valence, la rupture d’un support a désaxé la caténaire et imposé la fermeture du secteur. Quatre équipes ont sécurisé puis remplacé le support et réglé le fil. Après contrôle technique, les circulations ont repris en trois phases à 09:45, 10:15 et 10:45 UTC. Des cars de substitution ont pris en charge les voyageurs immobilisés.",
+      "summary": "Avarie de caténaire et mobilisation de quatre équipes. Reprise en trois phases après contrôle technique. Mise en place d’un transport de substitution pour les voyageurs immobilisés.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2024-267-01",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-10-03T07:15:00+00:00",
+          "content": "Signalement synthétique : Avarie caténaire dans la vallée du Rhône — Valence · Rhône-Alpes. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2024-267-02",
+          "type": "message",
+          "author": "Tom Vasseur",
+          "role": "Coordination technique",
+          "created_at": "2024-10-03T07:30:00+00:00",
+          "content": "Point terrain de démonstration : Support de caténaire rompu et fil désaxé. Quatre équipes mobilisées pour sécurisation, remplacement et réglage. Transport de substitution activé pour les voyageurs immobilisés."
+        },
+        {
+          "id": "CALL-REX-2024-267-01",
+          "type": "call",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-10-03T10:47:00+00:00",
+          "title": "Bilan de clôture · Avarie caténaire dans la vallée du Rhône",
+          "status": "termine",
+          "participants": [
+            "Emmanuel Garcin",
+            "Tom Vasseur"
+          ],
+          "transcript": "00:00 — Emmanuel Garcin : Appel synthétique de démonstration, bilan de Avarie caténaire dans la vallée du Rhône.\n00:30 — Tom Vasseur : Contrôle technique satisfaisant. Les trois phases de reprise à 09:45, 10:15 et 10:45 UTC sont achevées ; desserte nominale rétablie. 4 équipes mobilisées.\n01:15 — Emmanuel Garcin : Bilan de démonstration : 2 700 voyageurs, 18 trains impactés, 4 trains supprimés. Retards estimés : 50 à 100 minutes. 4 équipes mobilisées. Reprise constatée à 10:45 UTC.\n02:00 — Tom Vasseur : Première action : Inspecter les fixations des supports de la même série, responsable Tom Vasseur, échéance 2024-11-02.\n02:30 — Emmanuel Garcin : Deuxième action : Relier les séries de supports aux défauts dans l’inventaire, responsable Emmanuel Garcin, échéance 2024-12-02. Troisième action : Formaliser les trois phases de reprise et la substitution, responsable Giuliana Peyrac, échéance 2024-11-17.",
+          "summary": "Exemple synthétique de bilan de clôture. Contrôle technique satisfaisant. Les trois phases de reprise à 09:45, 10:15 et 10:45 UTC sont achevées ; desserte nominale rétablie. Bilan de démonstration : 2 700 voyageurs, 18 trains impactés, 4 trains supprimés. Retards estimés : 50 à 100 minutes. 4 équipes mobilisées. Reprise constatée à 10:45 UTC. Actions retenues : Inspecter les fixations des supports de la même série — Tom Vasseur; Relier les séries de supports aux défauts dans l’inventaire — Emmanuel Garcin; Formaliser les trois phases de reprise et la substitution — Giuliana Peyrac.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2024-10-03T10:50:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2024-10-03T10:51:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2024-267-03",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-10-03T10:53:00+00:00",
+          "content": "Contrôle technique satisfaisant. Les trois phases de reprise à 09:45, 10:15 et 10:45 UTC sont achevées ; desserte nominale rétablie. Bilan de démonstration : 2 700 voyageurs, 18 trains impactés, 4 trains supprimés. Retards estimés : 50 à 100 minutes. 4 équipes mobilisées. Reprise constatée à 10:45 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "2 700 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-267-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "18 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-267-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "50 à 100 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2024-267-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "4 trains supprimés",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-267-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "4 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2024-267-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "10:45 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-267-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2024-10-03T10:55:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2024-10-03T10:55:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "À Valence, la rupture d’un support a désaxé la caténaire et imposé la fermeture du secteur. Quatre équipes ont sécurisé puis remplacé le support et réglé le fil. Après contrôle technique, les circulations ont repris en trois phases à 09:45, 10:15 et 10:45 UTC. Des cars de substitution ont pris en charge les voyageurs immobilisés.",
+        "consequences": "2 700 voyageurs et 18 trains ont été concernés, dont 4 supprimés, avec des retards de 50 à 100 minutes. La substitution a permis de rejoindre les gares desservies ; la reprise par phases a évité de saturer immédiatement le secteur réparé.",
+        "five_whys": [
+          {
+            "question": "Pourquoi le secteur a-t-il été fermé ?",
+            "answer": "Un support rompu avait désaxé le fil de contact et rendu le captage dangereux."
+          },
+          {
+            "question": "Pourquoi le support a-t-il rompu ?",
+            "answer": "Une corrosion interne avait affaibli sa fixation."
+          },
+          {
+            "question": "Pourquoi la corrosion n’a-t-elle pas été repérée ?",
+            "answer": "La zone masquée par la fixation n’était pas visible lors des tournées courantes."
+          },
+          {
+            "question": "Pourquoi aucun contrôle complémentaire n’était-il programmé ?",
+            "answer": "Les supports de cette série n’étaient pas identifiés comme une famille à risque."
+          },
+          {
+            "question": "Pourquoi cette famille à risque n’était-elle pas identifiée ?",
+            "answer": "L’inventaire des équipements ne reliait pas la série des supports aux défauts constatés ailleurs."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2024-267-A01",
+            "title": "Inspecter les fixations des supports de la même série",
+            "owner": "Tom Vasseur",
+            "deadline": "2024-11-02",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2024-267-A02",
+            "title": "Relier les séries de supports aux défauts dans l’inventaire",
+            "owner": "Emmanuel Garcin",
+            "deadline": "2024-12-02",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2024-267-A03",
+            "title": "Formaliser les trois phases de reprise et la substitution",
+            "owner": "Giuliana Peyrac",
+            "deadline": "2024-11-17",
+            "status": "termine"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2025-231",
+      "title": "Zone de détection occupée à Mâcon",
+      "category": "Installations de signalisation",
+      "severity": "G2",
+      "status": "Terminé",
+      "location": "Mâcon · Bourgogne",
+      "line": "LGV Paris – Lyon",
+      "region": "Bourgogne",
+      "started_at": "2025-12-04T09:00:00+00:00",
+      "ended_at": "2025-12-04T10:20:00+00:00",
+      "estimated_end": "10:20 UTC",
+      "owner": "Alexandre Lacombe",
+      "description": "Scénario historique synthétique de démonstration. À Mâcon, une zone de détection est restée occupée sans train présent. Le diagnostic a isolé un défaut de connexion. Les trains ont circulé sous procédure de secours pendant 1 h 20, sans suppression. Le remplacement du connecteur et les essais ont permis le retour nominal.",
+      "summary": "Défaut de connexion sur une zone de détection. Circulation sous procédure de secours pendant 1 h 20, sans suppression. Retour nominal après remplacement du connecteur et essais.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-231-01",
+          "type": "message",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-12-04T09:00:00+00:00",
+          "content": "Signalement synthétique : Zone de détection occupée à Mâcon — Mâcon · Bourgogne. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-231-02",
+          "type": "message",
+          "author": "Emmanuel Royer",
+          "role": "Coordination technique",
+          "created_at": "2025-12-04T09:15:00+00:00",
+          "content": "Point terrain de démonstration : Défaut de connexion confirmé sur la zone de détection. Deux équipes mobilisées ; maintien de la procédure de secours jusqu’au remplacement du connecteur et aux essais."
+        },
+        {
+          "id": "CALL-REX-2025-231-01",
+          "type": "call",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-12-04T10:22:00+00:00",
+          "title": "Bilan de clôture · Zone de détection occupée à Mâcon",
+          "status": "termine",
+          "participants": [
+            "Alexandre Lacombe",
+            "Emmanuel Royer"
+          ],
+          "transcript": "00:00 — Alexandre Lacombe : Appel synthétique de démonstration, bilan de Zone de détection occupée à Mâcon.\n00:30 — Emmanuel Royer : Connecteur remplacé ; essais d’occupation et de libération satisfaisants. Retour nominal après 1 h 20 sous procédure de secours. 2 équipes mobilisées.\n01:15 — Alexandre Lacombe : Bilan de démonstration : 800 voyageurs, 6 trains impactés, 0 train supprimé. Retards estimés : 15 à 30 minutes. 2 équipes mobilisées. Reprise constatée à 10:20 UTC.\n02:00 — Emmanuel Royer : Première action : Remplacer les joints des boîtiers du secteur, responsable Emmanuel Royer, échéance 2025-12-24.\n02:30 — Alexandre Lacombe : Deuxième action : Ajouter le contrôle d’étanchéité à la visite signalisation, responsable Alexandre Lacombe, échéance 2026-01-13. Troisième action : Vérifier le stock de connecteurs compatibles, responsable Emmanuel Royer, échéance 2025-12-14.",
+          "summary": "Exemple synthétique de bilan de clôture. Connecteur remplacé ; essais d’occupation et de libération satisfaisants. Retour nominal après 1 h 20 sous procédure de secours. Bilan de démonstration : 800 voyageurs, 6 trains impactés, 0 train supprimé. Retards estimés : 15 à 30 minutes. 2 équipes mobilisées. Reprise constatée à 10:20 UTC. Actions retenues : Remplacer les joints des boîtiers du secteur — Emmanuel Royer; Ajouter le contrôle d’étanchéité à la visite signalisation — Alexandre Lacombe; Vérifier le stock de connecteurs compatibles — Emmanuel Royer.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-12-04T10:25:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-12-04T10:26:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-231-03",
+          "type": "message",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-12-04T10:28:00+00:00",
+          "content": "Connecteur remplacé ; essais d’occupation et de libération satisfaisants. Retour nominal après 1 h 20 sous procédure de secours. Bilan de démonstration : 800 voyageurs, 6 trains impactés, 0 train supprimé. Retards estimés : 15 à 30 minutes. 2 équipes mobilisées. Reprise constatée à 10:20 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "800 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-231-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "6 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-231-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "15 à 30 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-231-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "0 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-231-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-231-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "10:20 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-231-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-12-04T10:30:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-12-04T10:30:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "À Mâcon, une zone de détection est restée occupée sans train présent. Le diagnostic a isolé un défaut de connexion. Les trains ont circulé sous procédure de secours pendant 1 h 20, sans suppression. Le remplacement du connecteur et les essais ont permis le retour nominal.",
+        "consequences": "800 voyageurs et 6 trains ont subi des retards de 15 à 30 minutes. Aucune suppression ; la procédure de secours a réduit le débit mais conservé les circulations dans les conditions de sécurité prévues.",
+        "five_whys": [
+          {
+            "question": "Pourquoi la zone est-elle restée occupée ?",
+            "answer": "Une connexion défaillante empêchait la détection de revenir à l’état libre."
+          },
+          {
+            "question": "Pourquoi la connexion était-elle défaillante ?",
+            "answer": "De l’humidité avait oxydé les contacts du connecteur."
+          },
+          {
+            "question": "Pourquoi l’humidité avait-elle atteint les contacts ?",
+            "answer": "Le joint du boîtier n’assurait plus une étanchéité suffisante."
+          },
+          {
+            "question": "Pourquoi le joint n’avait-il pas été remplacé ?",
+            "answer": "Les visites contrôlaient le signal électrique sans vérifier systématiquement l’état du joint."
+          },
+          {
+            "question": "Pourquoi le contrôle du joint n’était-il pas systématique ?",
+            "answer": "La gamme de visite dissociait le contrôle électrique de celui de l’enveloppe du boîtier."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-231-A01",
+            "title": "Remplacer les joints des boîtiers du secteur",
+            "owner": "Emmanuel Royer",
+            "deadline": "2025-12-24",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-231-A02",
+            "title": "Ajouter le contrôle d’étanchéité à la visite signalisation",
+            "owner": "Alexandre Lacombe",
+            "deadline": "2026-01-13",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2025-231-A03",
+            "title": "Vérifier le stock de connecteurs compatibles",
+            "owner": "Emmanuel Royer",
+            "deadline": "2025-12-14",
+            "status": "termine"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2025-071",
+      "title": "Défaut de signalisation à Dijon",
+      "category": "Installations de signalisation",
+      "severity": "G2",
+      "status": "Terminé",
+      "location": "Dijon · Bourgogne",
+      "line": "Paris – Dijon",
+      "region": "Bourgogne",
+      "started_at": "2025-04-19T14:00:00+00:00",
+      "ended_at": "2025-04-19T15:35:00+00:00",
+      "estimated_end": "15:35 UTC",
+      "owner": "Alexandre Lacombe",
+      "description": "Scénario historique synthétique de démonstration. Un dérangement de signalisation à Dijon a imposé un plan de circulation réduit. Le contrôle terrain a trouvé une borne desserrée dans une armoire et permis sa remise en état. Un point de situation commun diffusé aux gares a remplacé les messages contradictoires sur l’heure de reprise.",
+      "summary": "Dérangement de signalisation résolu après contrôle terrain. La diffusion d’un point de situation commun a réduit les messages contradictoires aux gares.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-071-01",
+          "type": "message",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-04-19T14:00:00+00:00",
+          "content": "Signalement synthétique : Défaut de signalisation à Dijon — Dijon · Bourgogne. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-071-02",
+          "type": "message",
+          "author": "Emmanuel Royer",
+          "role": "Coordination technique",
+          "created_at": "2025-04-19T14:15:00+00:00",
+          "content": "Point terrain de démonstration : Borne desserrée identifiée dans l’armoire de signalisation. Deux équipes mobilisées pour remise en état et essais. Un bulletin commun est envoyé aux gares pour aligner les consignes voyageurs."
+        },
+        {
+          "id": "CALL-REX-2025-071-01",
+          "type": "call",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-04-19T15:37:00+00:00",
+          "title": "Bilan de clôture · Défaut de signalisation à Dijon",
+          "status": "termine",
+          "participants": [
+            "Alexandre Lacombe",
+            "Emmanuel Royer"
+          ],
+          "transcript": "00:00 — Alexandre Lacombe : Appel synthétique de démonstration, bilan de Défaut de signalisation à Dijon.\n00:30 — Emmanuel Royer : Borne resserrée et essais terrain satisfaisants. Retour nominal confirmé dans un point de situation commun aux gares. 2 équipes mobilisées.\n01:15 — Alexandre Lacombe : Bilan de démonstration : 1 100 voyageurs, 9 trains impactés, 1 train supprimé. Retards estimés : 20 à 40 minutes. 2 équipes mobilisées. Reprise constatée à 15:35 UTC.\n02:00 — Emmanuel Royer : Première action : Mettre à jour la fiche après chaque modification d’armoire, responsable Emmanuel Royer, échéance 2025-05-19.\n02:30 — Alexandre Lacombe : Deuxième action : Créer un bulletin unique de situation pour les gares, responsable Caroline Brunet, échéance 2025-05-03. Troisième action : Auditer la clôture documentaire des modifications récentes, responsable Alexandre Lacombe, échéance 2025-07-18.",
+          "summary": "Exemple synthétique de bilan de clôture. Borne resserrée et essais terrain satisfaisants. Retour nominal confirmé dans un point de situation commun aux gares. Bilan de démonstration : 1 100 voyageurs, 9 trains impactés, 1 train supprimé. Retards estimés : 20 à 40 minutes. 2 équipes mobilisées. Reprise constatée à 15:35 UTC. Actions retenues : Mettre à jour la fiche après chaque modification d’armoire — Emmanuel Royer; Créer un bulletin unique de situation pour les gares — Caroline Brunet; Auditer la clôture documentaire des modifications récentes — Alexandre Lacombe.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-04-19T15:40:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-04-19T15:41:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-071-03",
+          "type": "message",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-04-19T15:43:00+00:00",
+          "content": "Borne resserrée et essais terrain satisfaisants. Retour nominal confirmé dans un point de situation commun aux gares. Bilan de démonstration : 1 100 voyageurs, 9 trains impactés, 1 train supprimé. Retards estimés : 20 à 40 minutes. 2 équipes mobilisées. Reprise constatée à 15:35 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "1 100 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-071-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "9 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-071-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "20 à 40 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-071-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "1 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-071-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-071-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "15:35 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-071-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-04-19T15:45:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-04-19T15:45:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "Un dérangement de signalisation à Dijon a imposé un plan de circulation réduit. Le contrôle terrain a trouvé une borne desserrée dans une armoire et permis sa remise en état. Un point de situation commun diffusé aux gares a remplacé les messages contradictoires sur l’heure de reprise.",
+        "consequences": "1 100 voyageurs et 9 trains ont été concernés, dont 1 supprimé, avec des retards de 20 à 40 minutes. Les annonces initialement divergentes ont accru l’incertitude ; le bulletin commun a stabilisé l’information jusqu’au retour nominal.",
+        "five_whys": [
+          {
+            "question": "Pourquoi la signalisation était-elle en dérangement ?",
+            "answer": "Une borne desserrée créait un contact instable dans l’armoire."
+          },
+          {
+            "question": "Pourquoi la borne s’était-elle desserrée ?",
+            "answer": "Les vibrations avaient progressivement réduit le serrage."
+          },
+          {
+            "question": "Pourquoi le desserrage n’avait-il pas été détecté ?",
+            "answer": "Le contrôle courant ne comportait pas de vérification mécanique de cette borne."
+          },
+          {
+            "question": "Pourquoi cette vérification manquait-elle ?",
+            "answer": "La borne avait été ajoutée lors d’une modification sans mise à jour de la fiche de contrôle."
+          },
+          {
+            "question": "Pourquoi la fiche n’avait-elle pas été mise à jour ?",
+            "answer": "La clôture de la modification ne vérifiait pas la remise des consignes de maintenance actualisées."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-071-A01",
+            "title": "Mettre à jour la fiche après chaque modification d’armoire",
+            "owner": "Emmanuel Royer",
+            "deadline": "2025-05-19",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2025-071-A02",
+            "title": "Créer un bulletin unique de situation pour les gares",
+            "owner": "Caroline Brunet",
+            "deadline": "2025-05-03",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-071-A03",
+            "title": "Auditer la clôture documentaire des modifications récentes",
+            "owner": "Alexandre Lacombe",
+            "deadline": "2025-07-18",
+            "status": "a_faire"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2024-319",
+      "title": "Anomalie de circuit de voie à Sens",
+      "category": "Installations de signalisation",
+      "severity": "G1",
+      "status": "Terminé",
+      "location": "Sens · Bourgogne",
+      "line": "Paris – Dijon",
+      "region": "Bourgogne",
+      "started_at": "2024-12-11T06:20:00+00:00",
+      "ended_at": "2024-12-11T07:25:00+00:00",
+      "estimated_end": "07:25 UTC",
+      "owner": "Alexandre Lacombe",
+      "description": "Scénario historique synthétique de démonstration. À Sens, un circuit de voie a présenté des occupations intermittentes. Deux équipes ont recherché le défaut sous surveillance renforcée et identifié une liaison de retour dégradée. Un plan de circulation adapté a limité les retards ; la liaison a été remplacée et les essais prolongés avant la reprise nominale.",
+      "summary": "Anomalie intermittente d’un circuit de voie. Surveillance renforcée et intervention de deux équipes. Retards limités par un plan de circulation adapté.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2024-319-01",
+          "type": "message",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-12-11T06:20:00+00:00",
+          "content": "Signalement synthétique : Anomalie de circuit de voie à Sens — Sens · Bourgogne. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2024-319-02",
+          "type": "message",
+          "author": "Emmanuel Royer",
+          "role": "Coordination technique",
+          "created_at": "2024-12-11T06:35:00+00:00",
+          "content": "Point terrain de démonstration : Liaison de retour dégradée repérée après reproduction du défaut intermittent. Deux équipes mobilisées ; surveillance renforcée et plan de circulation adapté maintenus pendant les contrôles."
+        },
+        {
+          "id": "CALL-REX-2024-319-01",
+          "type": "call",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-12-11T07:27:00+00:00",
+          "title": "Bilan de clôture · Anomalie de circuit de voie à Sens",
+          "status": "termine",
+          "participants": [
+            "Alexandre Lacombe",
+            "Emmanuel Royer"
+          ],
+          "transcript": "00:00 — Alexandre Lacombe : Appel synthétique de démonstration, bilan de Anomalie de circuit de voie à Sens.\n00:30 — Emmanuel Royer : Liaison de retour remplacée et essais prolongés sans nouvelle anomalie. Retour nominal ; surveillance renforcée conservée jusqu’à la fin de la journée. 2 équipes mobilisées.\n01:15 — Alexandre Lacombe : Bilan de démonstration : 520 voyageurs, 5 trains impactés, 0 train supprimé. Retards estimés : 10 à 20 minutes. 2 équipes mobilisées. Reprise constatée à 07:25 UTC.\n02:00 — Emmanuel Royer : Première action : Regrouper les alertes fugitives par circuit de voie, responsable Alexandre Lacombe, échéance 2025-01-25.\n02:30 — Alexandre Lacombe : Deuxième action : Ajouter un essai sous sollicitation au diagnostic intermittent, responsable Emmanuel Royer, échéance 2025-01-10. Troisième action : Contrôler les raccordements voisins, responsable Emmanuel Royer, échéance 2024-12-25.",
+          "summary": "Exemple synthétique de bilan de clôture. Liaison de retour remplacée et essais prolongés sans nouvelle anomalie. Retour nominal ; surveillance renforcée conservée jusqu’à la fin de la journée. Bilan de démonstration : 520 voyageurs, 5 trains impactés, 0 train supprimé. Retards estimés : 10 à 20 minutes. 2 équipes mobilisées. Reprise constatée à 07:25 UTC. Actions retenues : Regrouper les alertes fugitives par circuit de voie — Alexandre Lacombe; Ajouter un essai sous sollicitation au diagnostic intermittent — Emmanuel Royer; Contrôler les raccordements voisins — Emmanuel Royer.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2024-12-11T07:30:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2024-12-11T07:31:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2024-319-03",
+          "type": "message",
+          "author": "Alexandre Lacombe",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-12-11T07:33:00+00:00",
+          "content": "Liaison de retour remplacée et essais prolongés sans nouvelle anomalie. Retour nominal ; surveillance renforcée conservée jusqu’à la fin de la journée. Bilan de démonstration : 520 voyageurs, 5 trains impactés, 0 train supprimé. Retards estimés : 10 à 20 minutes. 2 équipes mobilisées. Reprise constatée à 07:25 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "520 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-319-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "5 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-319-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "10 à 20 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2024-319-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "0 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-319-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2024-319-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "07:25 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-319-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2024-12-11T07:35:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2024-12-11T07:35:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "À Sens, un circuit de voie a présenté des occupations intermittentes. Deux équipes ont recherché le défaut sous surveillance renforcée et identifié une liaison de retour dégradée. Un plan de circulation adapté a limité les retards ; la liaison a été remplacée et les essais prolongés avant la reprise nominale.",
+        "consequences": "520 voyageurs et 5 trains ont subi des retards de 10 à 20 minutes, sans suppression. Le suivi renforcé et l’espacement adapté ont contenu la perturbation sans lever prématurément les restrictions.",
+        "five_whys": [
+          {
+            "question": "Pourquoi le circuit de voie présentait-il des anomalies intermittentes ?",
+            "answer": "Une liaison de retour dégradée rendait le signal de détection instable."
+          },
+          {
+            "question": "Pourquoi la liaison était-elle dégradée ?",
+            "answer": "Les sollicitations mécaniques avaient fragilisé son point de raccordement."
+          },
+          {
+            "question": "Pourquoi la fragilisation n’était-elle pas visible au contrôle précédent ?",
+            "answer": "Le défaut ne se manifestait que sous vibration et la mesure avait été faite à l’arrêt."
+          },
+          {
+            "question": "Pourquoi aucun essai sous sollicitation n’était-il prévu ?",
+            "answer": "La gamme de contrôle était conçue pour les défauts permanents."
+          },
+          {
+            "question": "Pourquoi les défauts intermittents n’étaient-ils pas couverts ?",
+            "answer": "Les alertes fugitives étaient suivies séparément sans déclencher une analyse de tendance."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2024-319-A01",
+            "title": "Regrouper les alertes fugitives par circuit de voie",
+            "owner": "Alexandre Lacombe",
+            "deadline": "2025-01-25",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2024-319-A02",
+            "title": "Ajouter un essai sous sollicitation au diagnostic intermittent",
+            "owner": "Emmanuel Royer",
+            "deadline": "2025-01-10",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2024-319-A03",
+            "title": "Contrôler les raccordements voisins",
+            "owner": "Emmanuel Royer",
+            "deadline": "2024-12-25",
+            "status": "termine"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2025-152",
+      "title": "Tempête sur l’axe Lyon – Marseille",
+      "category": "Aléas climatiques",
+      "severity": "G2",
+      "status": "Terminé",
+      "location": "Vallée du Rhône",
+      "line": "Lyon – Marseille",
+      "region": "Rhône-Alpes",
+      "started_at": "2025-09-22T08:00:00+00:00",
+      "ended_at": "2025-09-22T11:00:00+00:00",
+      "estimated_end": "11:00 UTC",
+      "owner": "Emmanuel Garcin",
+      "description": "Scénario historique synthétique de démonstration. Des rafales à 105 km/h dans la vallée du Rhône ont entraîné des limitations de vitesse sur l’axe Lyon – Marseille. Trois équipes ont inspecté en priorité les zones arborées. Après accalmie et validation terrain, les limitations ont été levées ; la perturbation a duré trois heures.",
+      "summary": "Rafales à 105 km/h et limitations de vitesse. Inspections ciblées sur les zones arborées ; reprise après accalmie et validation terrain. Trois heures de perturbation.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-152-01",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-09-22T08:00:00+00:00",
+          "content": "Signalement synthétique : Tempête sur l’axe Lyon – Marseille — Vallée du Rhône. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-152-02",
+          "type": "message",
+          "author": "Tom Kerbrat",
+          "role": "Coordination technique",
+          "created_at": "2025-09-22T08:15:00+00:00",
+          "content": "Point terrain de démonstration : Rafales à 105 km/h confirmées sur l’axe. Trois équipes mobilisées pour inspecter les zones arborées ; limitations maintenues jusqu’à l’accalmie et à la validation terrain."
+        },
+        {
+          "id": "CALL-REX-2025-152-01",
+          "type": "call",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-09-22T11:02:00+00:00",
+          "title": "Bilan de clôture · Tempête sur l’axe Lyon – Marseille",
+          "status": "termine",
+          "participants": [
+            "Emmanuel Garcin",
+            "Tom Kerbrat"
+          ],
+          "transcript": "00:00 — Emmanuel Garcin : Appel synthétique de démonstration, bilan de Tempête sur l’axe Lyon – Marseille.\n00:30 — Tom Kerbrat : Accalmie confirmée et zones arborées contrôlées sans obstacle résiduel. Levée des limitations après trois heures de perturbation. 3 équipes mobilisées.\n01:15 — Emmanuel Garcin : Bilan de démonstration : 3 000 voyageurs, 20 trains impactés, 2 trains supprimés. Retards estimés : 30 à 60 minutes. 3 équipes mobilisées. Reprise constatée à 11:00 UTC.\n02:00 — Tom Kerbrat : Première action : Croiser secteurs venteux et arbres fragiles dans la cartographie, responsable Tom Kerbrat, échéance 2025-11-06.\n02:30 — Emmanuel Garcin : Deuxième action : Élaguer les lisières prioritaires avant la saison venteuse, responsable Tom Kerbrat, échéance 2025-11-21. Troisième action : Exercer la décision de reprise après accalmie et inspection, responsable Emmanuel Garcin, échéance 2025-10-22.",
+          "summary": "Exemple synthétique de bilan de clôture. Accalmie confirmée et zones arborées contrôlées sans obstacle résiduel. Levée des limitations après trois heures de perturbation. Bilan de démonstration : 3 000 voyageurs, 20 trains impactés, 2 trains supprimés. Retards estimés : 30 à 60 minutes. 3 équipes mobilisées. Reprise constatée à 11:00 UTC. Actions retenues : Croiser secteurs venteux et arbres fragiles dans la cartographie — Tom Kerbrat; Élaguer les lisières prioritaires avant la saison venteuse — Tom Kerbrat; Exercer la décision de reprise après accalmie et inspection — Emmanuel Garcin.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-09-22T11:05:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-09-22T11:06:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-152-03",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-09-22T11:08:00+00:00",
+          "content": "Accalmie confirmée et zones arborées contrôlées sans obstacle résiduel. Levée des limitations après trois heures de perturbation. Bilan de démonstration : 3 000 voyageurs, 20 trains impactés, 2 trains supprimés. Retards estimés : 30 à 60 minutes. 3 équipes mobilisées. Reprise constatée à 11:00 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "3 000 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-152-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "20 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-152-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "30 à 60 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-152-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "2 trains supprimés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-152-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "3 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-152-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "11:00 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-152-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-09-22T11:10:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-09-22T11:10:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "Des rafales à 105 km/h dans la vallée du Rhône ont entraîné des limitations de vitesse sur l’axe Lyon – Marseille. Trois équipes ont inspecté en priorité les zones arborées. Après accalmie et validation terrain, les limitations ont été levées ; la perturbation a duré trois heures.",
+        "consequences": "3 000 voyageurs et 20 trains ont été concernés, dont 2 supprimés, avec des retards de 30 à 60 minutes. Les inspections ciblées ont sécurisé la reprise ; aucune collision ni aucun blessé dans ce scénario synthétique.",
+        "five_whys": [
+          {
+            "question": "Pourquoi les circulations ont-elles été ralenties ?",
+            "answer": "Les rafales à 105 km/h imposaient des limitations de vitesse préventives."
+          },
+          {
+            "question": "Pourquoi la reprise nécessitait-elle des inspections terrain ?",
+            "answer": "Les vents pouvaient faire tomber de la végétation dans les zones arborées proches des voies."
+          },
+          {
+            "question": "Pourquoi ces zones présentaient-elles une exposition élevée ?",
+            "answer": "Plusieurs arbres en lisière conservaient des branches fragiles orientées vers les voies."
+          },
+          {
+            "question": "Pourquoi ces branches n’avaient-elles pas été traitées en priorité ?",
+            "answer": "La tournée végétation évaluait la distance à la voie sans classer la vulnérabilité au vent."
+          },
+          {
+            "question": "Pourquoi la vulnérabilité au vent n’était-elle pas classée ?",
+            "answer": "Les observations arboricoles et les secteurs météo exposés n’étaient pas croisés dans la programmation."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-152-A01",
+            "title": "Croiser secteurs venteux et arbres fragiles dans la cartographie",
+            "owner": "Tom Kerbrat",
+            "deadline": "2025-11-06",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2025-152-A02",
+            "title": "Élaguer les lisières prioritaires avant la saison venteuse",
+            "owner": "Tom Kerbrat",
+            "deadline": "2025-11-21",
+            "status": "a_faire"
+          },
+          {
+            "id": "REX-2025-152-A03",
+            "title": "Exercer la décision de reprise après accalmie et inspection",
+            "owner": "Emmanuel Garcin",
+            "deadline": "2025-10-22",
+            "status": "termine"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2025-034",
+      "title": "Vents forts entre Valence et Orange",
+      "category": "Aléas climatiques",
+      "severity": "G2",
+      "status": "Terminé",
+      "location": "Valence – Orange",
+      "line": "Valence – Orange",
+      "region": "Vallée du Rhône",
+      "started_at": "2025-02-16T06:30:00+00:00",
+      "ended_at": "2025-02-16T09:00:00+00:00",
+      "estimated_end": "09:00 UTC",
+      "owner": "Emmanuel Garcin",
+      "description": "Scénario historique synthétique de démonstration. Des vents forts entre Valence et Orange ont déplacé des branches à proximité des voies. Les limitations ont été maintenues pendant les inspections et le retrait des branches instables. La coordination météo et maintenance a permis de lever les limitations par secteur à 08:20 puis 09:00 UTC.",
+      "summary": "Vents forts et branches à proximité des voies. La coordination météo et maintenance a permis une levée progressive des limitations par secteur.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-034-01",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-02-16T06:30:00+00:00",
+          "content": "Signalement synthétique : Vents forts entre Valence et Orange — Valence – Orange. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-034-02",
+          "type": "message",
+          "author": "Tom Kerbrat",
+          "role": "Coordination technique",
+          "created_at": "2025-02-16T06:45:00+00:00",
+          "content": "Point terrain de démonstration : Branches instables repérées à proximité des voies après les rafales. Trois équipes mobilisées ; points météo partagés avec la maintenance et inspections organisées par secteur."
+        },
+        {
+          "id": "CALL-REX-2025-034-01",
+          "type": "call",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-02-16T09:02:00+00:00",
+          "title": "Bilan de clôture · Vents forts entre Valence et Orange",
+          "status": "termine",
+          "participants": [
+            "Emmanuel Garcin",
+            "Tom Kerbrat"
+          ],
+          "transcript": "00:00 — Emmanuel Garcin : Appel synthétique de démonstration, bilan de Vents forts entre Valence et Orange.\n00:30 — Tom Kerbrat : Branches instables retirées et secteurs validés. Limitations levées à 08:20 puis 09:00 UTC selon les retours météo et maintenance. 3 équipes mobilisées.\n01:15 — Emmanuel Garcin : Bilan de démonstration : 1 800 voyageurs, 12 trains impactés, 1 train supprimé. Retards estimés : 25 à 50 minutes. 3 équipes mobilisées. Reprise constatée à 09:00 UTC.\n02:00 — Tom Kerbrat : Première action : Contrôler les branches en surplomb après chaque épisode fort, responsable Tom Kerbrat, échéance 2025-03-08.\n02:30 — Emmanuel Garcin : Deuxième action : Partager les validations de reprise secteur par secteur, responsable Emmanuel Garcin, échéance 2025-03-03. Troisième action : Programmer une visite arboricole des lisières exposées, responsable Tom Kerbrat, échéance 2025-05-02.",
+          "summary": "Exemple synthétique de bilan de clôture. Branches instables retirées et secteurs validés. Limitations levées à 08:20 puis 09:00 UTC selon les retours météo et maintenance. Bilan de démonstration : 1 800 voyageurs, 12 trains impactés, 1 train supprimé. Retards estimés : 25 à 50 minutes. 3 équipes mobilisées. Reprise constatée à 09:00 UTC. Actions retenues : Contrôler les branches en surplomb après chaque épisode fort — Tom Kerbrat; Partager les validations de reprise secteur par secteur — Emmanuel Garcin; Programmer une visite arboricole des lisières exposées — Tom Kerbrat.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-02-16T09:05:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-02-16T09:06:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-034-03",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-02-16T09:08:00+00:00",
+          "content": "Branches instables retirées et secteurs validés. Limitations levées à 08:20 puis 09:00 UTC selon les retours météo et maintenance. Bilan de démonstration : 1 800 voyageurs, 12 trains impactés, 1 train supprimé. Retards estimés : 25 à 50 minutes. 3 équipes mobilisées. Reprise constatée à 09:00 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "1 800 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-034-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "12 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-034-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "25 à 50 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-034-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "1 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-034-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "3 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-034-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "09:00 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-034-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-02-16T09:10:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-02-16T09:10:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "Des vents forts entre Valence et Orange ont déplacé des branches à proximité des voies. Les limitations ont été maintenues pendant les inspections et le retrait des branches instables. La coordination météo et maintenance a permis de lever les limitations par secteur à 08:20 puis 09:00 UTC.",
+        "consequences": "1 800 voyageurs et 12 trains ont été concernés, dont 1 supprimé, avec des retards de 25 à 50 minutes. La levée progressive par secteur a rendu une partie de la capacité avant la fin de tous les contrôles.",
+        "five_whys": [
+          {
+            "question": "Pourquoi des limitations de vitesse ont-elles été nécessaires ?",
+            "answer": "Les vents forts rendaient possible la chute de branches proches des voies."
+          },
+          {
+            "question": "Pourquoi des branches restaient-elles menaçantes ?",
+            "answer": "Des branches fissurées subsistaient après des épisodes venteux précédents."
+          },
+          {
+            "question": "Pourquoi les fissures n’avaient-elles pas été traitées ?",
+            "answer": "Les visites après rafales avaient surtout recherché les obstacles déjà tombés."
+          },
+          {
+            "question": "Pourquoi la recherche portait-elle sur les obstacles au sol ?",
+            "answer": "La fiche de visite ne prévoyait pas de contrôle de la stabilité des branches en surplomb."
+          },
+          {
+            "question": "Pourquoi ce contrôle n’était-il pas prévu ?",
+            "answer": "Le retour d’expérience sur les chutes différées n’avait pas été intégré à la visite après vent."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-034-A01",
+            "title": "Contrôler les branches en surplomb après chaque épisode fort",
+            "owner": "Tom Kerbrat",
+            "deadline": "2025-03-08",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-034-A02",
+            "title": "Partager les validations de reprise secteur par secteur",
+            "owner": "Emmanuel Garcin",
+            "deadline": "2025-03-03",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-034-A03",
+            "title": "Programmer une visite arboricole des lisières exposées",
+            "owner": "Tom Kerbrat",
+            "deadline": "2025-05-02",
+            "status": "en_cours"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2024-206",
+      "title": "Épisode venteux en Provence",
+      "category": "Aléas climatiques",
+      "severity": "G1",
+      "status": "Terminé",
+      "location": "Avignon · Provence",
+      "line": "Avignon – Marseille",
+      "region": "Provence",
+      "started_at": "2024-08-29T11:00:00+00:00",
+      "ended_at": "2024-08-29T13:00:00+00:00",
+      "estimated_end": "13:00 UTC",
+      "owner": "Emmanuel Garcin",
+      "description": "Scénario historique synthétique de démonstration. Un épisode venteux annoncé à Avignon a conduit à des limitations préventives pendant deux heures. La veille météo et les contrôles des emprises ont accompagné la circulation réduite. L’information anticipée des voyageurs et l’adaptation des correspondances ont limité les ruptures de parcours.",
+      "summary": "Limitations préventives pendant deux heures. L’information anticipée des voyageurs a limité les ruptures de correspondance.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2024-206-01",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-08-29T11:00:00+00:00",
+          "content": "Signalement synthétique : Épisode venteux en Provence — Avignon · Provence. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2024-206-02",
+          "type": "message",
+          "author": "Giuliana Peyrac",
+          "role": "Coordination technique",
+          "created_at": "2024-08-29T11:15:00+00:00",
+          "content": "Point terrain de démonstration : Épisode venteux suivi par la veille météo ; limitations préventives appliquées. Deux équipes mobilisées pour la surveillance et les contrôles des emprises. Les gares anticipent l’information sur les correspondances."
+        },
+        {
+          "id": "CALL-REX-2024-206-01",
+          "type": "call",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-08-29T13:02:00+00:00",
+          "title": "Bilan de clôture · Épisode venteux en Provence",
+          "status": "termine",
+          "participants": [
+            "Emmanuel Garcin",
+            "Giuliana Peyrac"
+          ],
+          "transcript": "00:00 — Emmanuel Garcin : Appel synthétique de démonstration, bilan de Épisode venteux en Provence.\n00:30 — Giuliana Peyrac : Bulletin météo favorable et contrôles des emprises satisfaisants. Limitations préventives levées après deux heures ; correspondances réévaluées avec les gares. 2 équipes mobilisées.\n01:15 — Emmanuel Garcin : Bilan de démonstration : 1 000 voyageurs, 8 trains impactés, 0 train supprimé. Retards estimés : 15 à 30 minutes. 2 équipes mobilisées. Reprise constatée à 13:00 UTC.\n02:00 — Giuliana Peyrac : Première action : Lister les correspondances prioritaires en scénario vent, responsable Giuliana Peyrac, échéance 2024-09-28.\n02:30 — Emmanuel Garcin : Deuxième action : Ajouter les annonces anticipées au plan météo voyageurs, responsable Emmanuel Garcin, échéance 2024-10-13. Troisième action : Simuler une reprise avec correspondances protégées, responsable Giuliana Peyrac, échéance 2024-11-27.",
+          "summary": "Exemple synthétique de bilan de clôture. Bulletin météo favorable et contrôles des emprises satisfaisants. Limitations préventives levées après deux heures ; correspondances réévaluées avec les gares. Bilan de démonstration : 1 000 voyageurs, 8 trains impactés, 0 train supprimé. Retards estimés : 15 à 30 minutes. 2 équipes mobilisées. Reprise constatée à 13:00 UTC. Actions retenues : Lister les correspondances prioritaires en scénario vent — Giuliana Peyrac; Ajouter les annonces anticipées au plan météo voyageurs — Emmanuel Garcin; Simuler une reprise avec correspondances protégées — Giuliana Peyrac.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2024-08-29T13:05:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2024-08-29T13:06:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2024-206-03",
+          "type": "message",
+          "author": "Emmanuel Garcin",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-08-29T13:08:00+00:00",
+          "content": "Bulletin météo favorable et contrôles des emprises satisfaisants. Limitations préventives levées après deux heures ; correspondances réévaluées avec les gares. Bilan de démonstration : 1 000 voyageurs, 8 trains impactés, 0 train supprimé. Retards estimés : 15 à 30 minutes. 2 équipes mobilisées. Reprise constatée à 13:00 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "1 000 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-206-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "8 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-206-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "15 à 30 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2024-206-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "0 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-206-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2024-206-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "13:00 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-206-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2024-08-29T13:10:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2024-08-29T13:10:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "Un épisode venteux annoncé à Avignon a conduit à des limitations préventives pendant deux heures. La veille météo et les contrôles des emprises ont accompagné la circulation réduite. L’information anticipée des voyageurs et l’adaptation des correspondances ont limité les ruptures de parcours.",
+        "consequences": "1 000 voyageurs et 8 trains ont subi des retards de 15 à 30 minutes, sans suppression. Les annonces anticipées et le maintien ciblé de correspondances ont limité les ruptures de parcours pendant les deux heures de restrictions.",
+        "five_whys": [
+          {
+            "question": "Pourquoi les trains ont-ils subi des retards ?",
+            "answer": "Les limitations préventives liées au vent augmentaient les temps de parcours."
+          },
+          {
+            "question": "Pourquoi ces retards menaçaient-ils les correspondances ?",
+            "answer": "Les marges entre certains trains étaient inférieures au retard attendu."
+          },
+          {
+            "question": "Pourquoi ces correspondances étaient-elles sensibles ?",
+            "answer": "Le plan de desserte reposait sur des temps de correspondance courts au nœud d’Avignon."
+          },
+          {
+            "question": "Pourquoi leur protection exigeait-elle une coordination spécifique ?",
+            "answer": "Le plan de transport réduit ne précisait pas les correspondances à maintenir en priorité."
+          },
+          {
+            "question": "Pourquoi ces priorités n’étaient-elles pas définies ?",
+            "answer": "Le scénario météo traitait la vitesse de circulation sans intégrer un volet voyageurs détaillé."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2024-206-A01",
+            "title": "Lister les correspondances prioritaires en scénario vent",
+            "owner": "Giuliana Peyrac",
+            "deadline": "2024-09-28",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2024-206-A02",
+            "title": "Ajouter les annonces anticipées au plan météo voyageurs",
+            "owner": "Emmanuel Garcin",
+            "deadline": "2024-10-13",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2024-206-A03",
+            "title": "Simuler une reprise avec correspondances protégées",
+            "owner": "Giuliana Peyrac",
+            "deadline": "2024-11-27",
+            "status": "a_faire"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2025-118",
+      "title": "Chute de branche à Dourdan",
+      "category": "Obstacle sur la voie",
+      "severity": "G1",
+      "status": "Terminé",
+      "location": "Dourdan · Île-de-France",
+      "line": "Paris – Dourdan",
+      "region": "Île-de-France",
+      "started_at": "2025-07-03T09:00:00+00:00",
+      "ended_at": "2025-07-03T09:55:00+00:00",
+      "estimated_end": "09:55 UTC",
+      "owner": "Caroline Lemaître",
+      "description": "Scénario historique synthétique de démonstration. Une branche tombée à Dourdan a obstrué une voie. Deux équipes l’ont retirée après protection de la zone et contrôlé la voie. La voie adjacente est restée exploitée sous régulation ; la reprise sur la voie dégagée a eu lieu en 55 minutes.",
+      "summary": "Branche retirée par deux équipes. Contrôle de la voie et reprise en 55 minutes. Circulation maintenue sur la voie adjacente sous régulation.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-118-01",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-07-03T09:00:00+00:00",
+          "content": "Signalement synthétique : Chute de branche à Dourdan — Dourdan · Île-de-France. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-118-02",
+          "type": "message",
+          "author": "Alexandre Morvan",
+          "role": "Coordination technique",
+          "created_at": "2025-07-03T09:15:00+00:00",
+          "content": "Point terrain de démonstration : Branche obstruant une voie, sans dégât apparent au rail. Deux équipes mobilisées pour le retrait et le contrôle ; circulation maintenue sur la voie adjacente sous régulation."
+        },
+        {
+          "id": "CALL-REX-2025-118-01",
+          "type": "call",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-07-03T09:57:00+00:00",
+          "title": "Bilan de clôture · Chute de branche à Dourdan",
+          "status": "termine",
+          "participants": [
+            "Caroline Lemaître",
+            "Alexandre Morvan"
+          ],
+          "transcript": "00:00 — Caroline Lemaître : Appel synthétique de démonstration, bilan de Chute de branche à Dourdan.\n00:30 — Alexandre Morvan : Branche retirée et contrôle de la voie satisfaisant. Reprise sur les deux voies après 55 minutes ; fin du report sous régulation. 2 équipes mobilisées.\n01:15 — Caroline Lemaître : Bilan de démonstration : 480 voyageurs, 4 trains impactés, 0 train supprimé. Retards estimés : 15 à 25 minutes. 2 équipes mobilisées. Reprise constatée à 09:55 UTC.\n02:00 — Alexandre Morvan : Première action : Faire diagnostiquer les arbres en surplomb du secteur, responsable Alexandre Morvan, échéance 2025-07-24.\n02:30 — Caroline Lemaître : Deuxième action : Ajouter les signes de fragilité à la fiche végétation, responsable Caroline Lemaître, échéance 2025-08-17. Troisième action : Vérifier le matériel de dégagement disponible à proximité, responsable Alexandre Morvan, échéance 2025-07-17.",
+          "summary": "Exemple synthétique de bilan de clôture. Branche retirée et contrôle de la voie satisfaisant. Reprise sur les deux voies après 55 minutes ; fin du report sous régulation. Bilan de démonstration : 480 voyageurs, 4 trains impactés, 0 train supprimé. Retards estimés : 15 à 25 minutes. 2 équipes mobilisées. Reprise constatée à 09:55 UTC. Actions retenues : Faire diagnostiquer les arbres en surplomb du secteur — Alexandre Morvan; Ajouter les signes de fragilité à la fiche végétation — Caroline Lemaître; Vérifier le matériel de dégagement disponible à proximité — Alexandre Morvan.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-07-03T10:00:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-07-03T10:01:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-118-03",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-07-03T10:03:00+00:00",
+          "content": "Branche retirée et contrôle de la voie satisfaisant. Reprise sur les deux voies après 55 minutes ; fin du report sous régulation. Bilan de démonstration : 480 voyageurs, 4 trains impactés, 0 train supprimé. Retards estimés : 15 à 25 minutes. 2 équipes mobilisées. Reprise constatée à 09:55 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "480 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-118-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "4 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-118-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "15 à 25 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-118-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "0 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-118-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-118-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "09:55 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-118-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-07-03T10:05:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-07-03T10:05:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "Une branche tombée à Dourdan a obstrué une voie. Deux équipes l’ont retirée après protection de la zone et contrôlé la voie. La voie adjacente est restée exploitée sous régulation ; la reprise sur la voie dégagée a eu lieu en 55 minutes.",
+        "consequences": "480 voyageurs et 4 trains ont subi des retards de 15 à 25 minutes, sans suppression. Le maintien de la voie adjacente et le dégagement rapide ont limité la perturbation à 55 minutes.",
+        "five_whys": [
+          {
+            "question": "Pourquoi une voie a-t-elle été fermée ?",
+            "answer": "Une branche tombée obstruait le passage des trains."
+          },
+          {
+            "question": "Pourquoi cette branche est-elle tombée ?",
+            "answer": "Une rafale a rompu une branche fragilisée."
+          },
+          {
+            "question": "Pourquoi la branche fragilisée était-elle encore présente ?",
+            "answer": "Son défaut se trouvait en hauteur et n’avait pas été repéré depuis le sol."
+          },
+          {
+            "question": "Pourquoi aucun examen spécialisé n’avait-il été demandé ?",
+            "answer": "La tournée classait les arbres par distance sans relever les signes de fragilité en couronne."
+          },
+          {
+            "question": "Pourquoi ces signes n’étaient-ils pas relevés ?",
+            "answer": "La fiche végétation ne comportait pas de critère de recours à un diagnostic arboricole."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-118-A01",
+            "title": "Faire diagnostiquer les arbres en surplomb du secteur",
+            "owner": "Alexandre Morvan",
+            "deadline": "2025-07-24",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-118-A02",
+            "title": "Ajouter les signes de fragilité à la fiche végétation",
+            "owner": "Caroline Lemaître",
+            "deadline": "2025-08-17",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2025-118-A03",
+            "title": "Vérifier le matériel de dégagement disponible à proximité",
+            "owner": "Alexandre Morvan",
+            "deadline": "2025-07-17",
+            "status": "termine"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2025-022",
+      "title": "Végétation sur les voies à Angerville",
+      "category": "Obstacle sur la voie",
+      "severity": "G1",
+      "status": "Terminé",
+      "location": "Angerville · Centre",
+      "line": "Paris – Orléans",
+      "region": "Centre",
+      "started_at": "2025-01-24T05:40:00+00:00",
+      "ended_at": "2025-01-24T07:20:00+00:00",
+      "estimated_end": "07:20 UTC",
+      "owner": "Caroline Lemaître",
+      "description": "Scénario historique synthétique de démonstration. À Angerville, des rafales ont fait tomber un arbre sur l’emprise ferroviaire. Après protection, les équipes ont débité et retiré l’arbre. Le contrôle des deux voies a prolongé l’intervention mais permis de retirer des débris sur la seconde voie avant la reprise, évitant une nouvelle interruption.",
+      "summary": "Dégagement d’un arbre après rafales. Le contrôle des deux voies a retardé la reprise mais évité une seconde interruption.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2025-022-01",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-01-24T05:40:00+00:00",
+          "content": "Signalement synthétique : Végétation sur les voies à Angerville — Angerville · Centre. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2025-022-02",
+          "type": "message",
+          "author": "Alexandre Morvan",
+          "role": "Coordination technique",
+          "created_at": "2025-01-24T05:55:00+00:00",
+          "content": "Point terrain de démonstration : Arbre couché après rafales, avec des débris sur les deux voies. Trois équipes mobilisées pour débitage, dégagement et inspection complète des deux voies avant toute reprise."
+        },
+        {
+          "id": "CALL-REX-2025-022-01",
+          "type": "call",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-01-24T07:22:00+00:00",
+          "title": "Bilan de clôture · Végétation sur les voies à Angerville",
+          "status": "termine",
+          "participants": [
+            "Caroline Lemaître",
+            "Alexandre Morvan"
+          ],
+          "transcript": "00:00 — Caroline Lemaître : Appel synthétique de démonstration, bilan de Végétation sur les voies à Angerville.\n00:30 — Alexandre Morvan : Arbre débité et débris retirés sur les deux voies. Inspection complète satisfaisante ; reprise autorisée sans restriction résiduelle. 3 équipes mobilisées.\n01:15 — Caroline Lemaître : Bilan de démonstration : 760 voyageurs, 6 trains impactés, 1 train supprimé. Retards estimés : 25 à 45 minutes. 3 équipes mobilisées. Reprise constatée à 07:20 UTC.\n02:00 — Alexandre Morvan : Première action : Intégrer pluie cumulée et vent au déclenchement des visites, responsable Caroline Lemaître, échéance 2025-03-10.\n02:30 — Caroline Lemaître : Deuxième action : Contrôler l’ancrage des arbres sur les talus humides, responsable Alexandre Morvan, échéance 2025-02-23. Troisième action : Inscrire le contrôle des deux voies dans la fiche de reprise, responsable Alexandre Morvan, échéance 2025-02-07.",
+          "summary": "Exemple synthétique de bilan de clôture. Arbre débité et débris retirés sur les deux voies. Inspection complète satisfaisante ; reprise autorisée sans restriction résiduelle. Bilan de démonstration : 760 voyageurs, 6 trains impactés, 1 train supprimé. Retards estimés : 25 à 45 minutes. 3 équipes mobilisées. Reprise constatée à 07:20 UTC. Actions retenues : Intégrer pluie cumulée et vent au déclenchement des visites — Caroline Lemaître; Contrôler l’ancrage des arbres sur les talus humides — Alexandre Morvan; Inscrire le contrôle des deux voies dans la fiche de reprise — Alexandre Morvan.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2025-01-24T07:25:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2025-01-24T07:26:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2025-022-03",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2025-01-24T07:28:00+00:00",
+          "content": "Arbre débité et débris retirés sur les deux voies. Inspection complète satisfaisante ; reprise autorisée sans restriction résiduelle. Bilan de démonstration : 760 voyageurs, 6 trains impactés, 1 train supprimé. Retards estimés : 25 à 45 minutes. 3 équipes mobilisées. Reprise constatée à 07:20 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "760 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-022-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "6 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-022-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "25 à 45 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2025-022-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "1 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-022-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "3 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2025-022-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "07:20 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2025-022-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2025-01-24T07:30:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2025-01-24T07:30:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "À Angerville, des rafales ont fait tomber un arbre sur l’emprise ferroviaire. Après protection, les équipes ont débité et retiré l’arbre. Le contrôle des deux voies a prolongé l’intervention mais permis de retirer des débris sur la seconde voie avant la reprise, évitant une nouvelle interruption.",
+        "consequences": "760 voyageurs et 6 trains ont été concernés, dont 1 supprimé, avec des retards de 25 à 45 minutes. Le contrôle des deux voies a retardé la reprise mais évité une seconde interruption liée aux débris résiduels.",
+        "five_whys": [
+          {
+            "question": "Pourquoi les voies ont-elles été interrompues ?",
+            "answer": "Un arbre tombé et ses débris empiétaient sur les deux voies."
+          },
+          {
+            "question": "Pourquoi l’arbre est-il tombé lors des rafales ?",
+            "answer": "Son ancrage était affaibli dans un sol détrempé."
+          },
+          {
+            "question": "Pourquoi cet ancrage affaibli n’avait-il pas été identifié ?",
+            "answer": "La tournée végétation n’avait pas réévalué l’arbre après les pluies prolongées."
+          },
+          {
+            "question": "Pourquoi aucune réévaluation n’avait-elle été déclenchée ?",
+            "answer": "Le déclenchement des visites tenait compte du vent mais pas du cumul de pluie."
+          },
+          {
+            "question": "Pourquoi le cumul de pluie était-il absent du déclenchement ?",
+            "answer": "Le plan météo ne croisait pas la saturation du sol avec le risque de chute d’arbres."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2025-022-A01",
+            "title": "Intégrer pluie cumulée et vent au déclenchement des visites",
+            "owner": "Caroline Lemaître",
+            "deadline": "2025-03-10",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2025-022-A02",
+            "title": "Contrôler l’ancrage des arbres sur les talus humides",
+            "owner": "Alexandre Morvan",
+            "deadline": "2025-02-23",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2025-022-A03",
+            "title": "Inscrire le contrôle des deux voies dans la fiche de reprise",
+            "owner": "Alexandre Morvan",
+            "deadline": "2025-02-07",
+            "status": "termine"
+          }
+        ]
+      }
+    },
+    {
+      "id": "REX-2024-175",
+      "title": "Obstacle naturel près d’Orléans",
+      "category": "Obstacle sur la voie",
+      "severity": "G1",
+      "status": "Terminé",
+      "location": "Orléans · Centre-Val de Loire",
+      "line": "Paris – Orléans",
+      "region": "Centre-Val de Loire",
+      "started_at": "2024-06-16T10:20:00+00:00",
+      "ended_at": "2024-06-16T11:35:00+00:00",
+      "estimated_end": "11:35 UTC",
+      "owner": "Caroline Lemaître",
+      "description": "Scénario historique synthétique de démonstration. Près d’Orléans, une branche et des débris végétaux ont formé un obstacle naturel sur une voie. La zone a été protégée, puis deux équipes ont dégagé l’obstacle et inspecté le terrain. Un plan de transport adapté et l’information en gare ont accompagné l’intervention.",
+      "summary": "Dégagement d’un obstacle naturel et inspection terrain. Plan de transport adapté, un train supprimé et information voyageurs en gare.",
+      "related_ids": [],
+      "events": [
+        {
+          "id": "EVT-REX-2024-175-01",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-06-16T10:20:00+00:00",
+          "content": "Signalement synthétique : Obstacle naturel près d’Orléans — Orléans · Centre-Val de Loire. Zone protégée et plan de circulation adapté engagé."
+        },
+        {
+          "id": "EVT-REX-2024-175-02",
+          "type": "message",
+          "author": "Alexandre Morvan",
+          "role": "Coordination technique",
+          "created_at": "2024-06-16T10:35:00+00:00",
+          "content": "Point terrain de démonstration : Branche et débris végétaux localisés sur une voie près d’Orléans. Deux équipes mobilisées pour dégagement et inspection terrain ; plan de transport adapté et annonces en gare activés."
+        },
+        {
+          "id": "CALL-REX-2024-175-01",
+          "type": "call",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-06-16T11:37:00+00:00",
+          "title": "Bilan de clôture · Obstacle naturel près d’Orléans",
+          "status": "termine",
+          "participants": [
+            "Caroline Lemaître",
+            "Alexandre Morvan"
+          ],
+          "transcript": "00:00 — Caroline Lemaître : Appel synthétique de démonstration, bilan de Obstacle naturel près d’Orléans.\n00:30 — Alexandre Morvan : Obstacle naturel dégagé et inspection terrain satisfaisante. Voie rendue à la circulation ; gares informées de la reprise et du maintien d’une suppression au bilan. 2 équipes mobilisées.\n01:15 — Caroline Lemaître : Bilan de démonstration : 620 voyageurs, 5 trains impactés, 1 train supprimé. Retards estimés : 20 à 35 minutes. 2 équipes mobilisées. Reprise constatée à 11:35 UTC.\n02:00 — Alexandre Morvan : Première action : Désigner un responsable pour chaque arbre en limite de secteur, responsable Caroline Lemaître, échéance 2024-07-16.\n02:30 — Caroline Lemaître : Deuxième action : Inspecter conjointement les limites de maintenance, responsable Alexandre Morvan, échéance 2024-07-31. Troisième action : Exercer l’orientation voyageurs après une suppression, responsable Caroline Brunet, échéance 2024-08-30.",
+          "summary": "Exemple synthétique de bilan de clôture. Obstacle naturel dégagé et inspection terrain satisfaisante. Voie rendue à la circulation ; gares informées de la reprise et du maintien d’une suppression au bilan. Bilan de démonstration : 620 voyageurs, 5 trains impactés, 1 train supprimé. Retards estimés : 20 à 35 minutes. 2 équipes mobilisées. Reprise constatée à 11:35 UTC. Actions retenues : Désigner un responsable pour chaque arbre en limite de secteur — Caroline Lemaître; Inspecter conjointement les limites de maintenance — Alexandre Morvan; Exercer l’orientation voyageurs après une suppression — Caroline Brunet.",
+          "duration_seconds": 180,
+          "synthetic": true,
+          "error": null,
+          "ended_at": "2024-06-16T11:40:00+00:00",
+          "summary_source": "demo",
+          "summary_updated_at": "2024-06-16T11:41:00+00:00"
+        },
+        {
+          "id": "EVT-REX-2024-175-03",
+          "type": "message",
+          "author": "Caroline Lemaître",
+          "role": "Coordination opérationnelle",
+          "created_at": "2024-06-16T11:43:00+00:00",
+          "content": "Obstacle naturel dégagé et inspection terrain satisfaisante. Voie rendue à la circulation ; gares informées de la reprise et du maintien d’une suppression au bilan. Bilan de démonstration : 620 voyageurs, 5 trains impactés, 1 train supprimé. Retards estimés : 20 à 35 minutes. 2 équipes mobilisées. Reprise constatée à 11:35 UTC."
+        }
+      ],
+      "impact": {
+        "items": [
+          {
+            "key": "passengers",
+            "label": "Impact passager",
+            "value": "620 voyageurs",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-175-03"
+          },
+          {
+            "key": "trains",
+            "label": "Impact train",
+            "value": "5 trains impactés",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-175-03"
+          },
+          {
+            "key": "delay",
+            "label": "Délai estimé",
+            "value": "20 à 35 minutes",
+            "status": "estimated",
+            "source": "EVT-REX-2024-175-03"
+          },
+          {
+            "key": "cancelled",
+            "label": "Trains supprimés",
+            "value": "1 train supprimé",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-175-03"
+          },
+          {
+            "key": "teams",
+            "label": "Équipes mobilisées",
+            "value": "2 équipes mobilisées",
+            "status": "confirmed",
+            "source": "CALL-REX-2024-175-01"
+          },
+          {
+            "key": "recovery",
+            "label": "Reprise estimée",
+            "value": "11:35 UTC",
+            "status": "confirmed",
+            "source": "EVT-REX-2024-175-03"
+          }
+        ],
+        "origin": "demo",
+        "updated_at": "2024-06-16T11:45:00+00:00",
+        "revision": 5,
+        "status": "ready",
+        "error": null
+      },
+      "history": [],
+      "synthetic": true,
+      "revision": 5,
+      "summary_revision": 5,
+      "summary_updated_at": "2024-06-16T11:45:00+00:00",
+      "summary_source": "demo",
+      "rex": {
+        "synthetic": true,
+        "what_happened": "Près d’Orléans, une branche et des débris végétaux ont formé un obstacle naturel sur une voie. La zone a été protégée, puis deux équipes ont dégagé l’obstacle et inspecté le terrain. Un plan de transport adapté et l’information en gare ont accompagné l’intervention.",
+        "consequences": "620 voyageurs et 5 trains ont été concernés, avec 1 train supprimé et des retards de 20 à 35 minutes. L’information en gare a orienté les voyageurs du train supprimé vers les circulations maintenues.",
+        "five_whys": [
+          {
+            "question": "Pourquoi la voie a-t-elle été indisponible ?",
+            "answer": "Une branche et des débris végétaux obstruaient le passage."
+          },
+          {
+            "question": "Pourquoi ces débris ont-ils atteint la voie ?",
+            "answer": "Une branche morte s’est détachée d’un arbre en bordure d’emprise."
+          },
+          {
+            "question": "Pourquoi la branche morte n’avait-elle pas été retirée ?",
+            "answer": "L’arbre se trouvait à la limite de deux secteurs de maintenance."
+          },
+          {
+            "question": "Pourquoi cette limite a-t-elle retardé le traitement ?",
+            "answer": "Chaque tournée considérait l’arbre comme relevant du secteur voisin."
+          },
+          {
+            "question": "Pourquoi l’affectation était-elle ambiguë ?",
+            "answer": "La cartographie des limites ne désignait pas un responsable pour les arbres en frontière de secteur."
+          }
+        ],
+        "action_items": [
+          {
+            "id": "REX-2024-175-A01",
+            "title": "Désigner un responsable pour chaque arbre en limite de secteur",
+            "owner": "Caroline Lemaître",
+            "deadline": "2024-07-16",
+            "status": "termine"
+          },
+          {
+            "id": "REX-2024-175-A02",
+            "title": "Inspecter conjointement les limites de maintenance",
+            "owner": "Alexandre Morvan",
+            "deadline": "2024-07-31",
+            "status": "en_cours"
+          },
+          {
+            "id": "REX-2024-175-A03",
+            "title": "Exercer l’orientation voyageurs après une suppression",
+            "owner": "Caroline Brunet",
+            "deadline": "2024-08-30",
+            "status": "a_faire"
+          }
+        ]
+      }
+    }
+  ]
+}
